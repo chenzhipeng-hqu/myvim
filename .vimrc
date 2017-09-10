@@ -142,8 +142,19 @@ autocmd BufReadPost *
               \	exe "normal g'\"" |
               \ endif
 
+"默认最大化窗口打开
+au GUIEnter * simalt ~
+
 
 "------------------------------------------------ Setting ----------------------------------
+
+"------------------ Ag Setting-------------------------
+" When you press gv you Ag after the selected text
+vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+
 
 "------------------ Ctrlp Setting-------------------------
 "let g:ctrlp_map = '<leader>p'
@@ -174,6 +185,14 @@ let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_ignore_dir = ['vendor', 'bower_components','node_modules']
 
+"use ag as the ctrlp command
+let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
+            \ --ignore .git
+            \ --ignore out
+            \ --ignore .svn
+            \ --ignore .hg
+            \ --ignore .DS_Store
+            \ -g ""'
 
 "----------------- Nerdtree Setting ------------------
 " 设置NERDTree子窗口宽度
@@ -187,22 +206,18 @@ let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
 let g:NERDTree_title='NERD Tree'
-
-" 关闭NERDTree快捷键
-map <F12> :NERDTreeToggle<CR>
-" 显示行号
+let g:neocomplcache_enable_at_startup = 1
 "let NERDTreeShowLineNumbers=1
 "let NERDTreeAutoCenter=1
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
-" 设置宽度
-let NERDTreeWinSize=31
 " 在终端启动vim时，共享NERDTree
 "let g:nerdtree_tabs_open_on_console_startup=1
 " 忽略一下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " 显示书签列表
 let NERDTreeShowBookmarks=1
+nmap <F12> :NERDTreeToggle<CR>
 
 "------------------ undotree Setting-------------------------
 set undodir=~/.undodir/
@@ -258,7 +273,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "----------------- vim-workspace Setting ----------------
 "<leader>s新建session
-nmap <c-s> :ToggleWorkspace<CR>
+"nmap <c-s> :ToggleWorkspace<CR>
 "修改新建的会话名字
 let g:workspace_session_name = 'Session.vim'
 "开启撤销记录永久保存
@@ -268,23 +283,47 @@ let g:workspace_undodir='.undodir'
 let g:workspace_autosave_always = 1
 let g:workspace_autosave_ignore = ['gitcommit']
 
-"----------------- vim-workspace Setting ----------------
-set tags=tags;
-set tags+=/usr/include/c++/tags
-set tags+=/usr/local/include/tags
-set tags+=./tags
-let g:tagbar_autofocus=1
-let g:tagbar_sort=0
-""设置tagbar使用的ctags的插件,必须要设置对    
-"let g:tagbar_ctags_bin='ctags'    
-"设置tagbar的窗口宽度    
-"let g:tagbar_width=30    
-""设置tagbar的窗口显示的位置,为左边    
-"let g:tagbar_right=1    
-"打开文件自动 打开tagbar    
-"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()    
-""映射tagbar的快捷键    
-nmap <F2> :TagbarToggle<CR> 
+"-----------------tagbar Setting ----------------
+if !empty("$HOME/.vim/plugged/tagbar")
+    set tags=tags;
+    set tags+=/usr/include/c++/tags
+    set tags+=/usr/local/include/tags
+    set tags+=./tags
+    let g:tagbar_autofocus=1
+    let g:tagbar_sort=0
+    ""设置tagbar使用的ctags的插件,必须要设置对    
+    "let g:tagbar_ctags_bin='ctags'    
+    "设置tagbar的窗口宽度    
+    "let g:tagbar_width=30    
+    ""设置tagbar的窗口显示的位置,为左边    
+    "let g:tagbar_right=1    
+    "打开文件自动 打开tagbar    
+    "autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()    
+    nnoremap <silent> tl :TagbarToggle<CR>
+endif
+
+"-----------------cscope Setting ----------------
+if has("cscope")
+  " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+  set cscopetag
+  set csprg=/usr/bin/cscope
+  set csto=0
+  set cst
+  set nocsverb
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+  " add any database in current directory
+  if filereadable("cscope.out")
+      cs add cscope.out
+  " else add the database pointed to by environment variable
+  elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+  endif
+  set csverb
+  " show msg when any other cscope db added
+  set cscopeverbose
+
+
+endif
 
 "------------------------------------------ Shotcut Setting ---------------------------------
 " 定义快捷键到行首和行尾
@@ -332,6 +371,22 @@ inoremap gitf  [feature][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END
 inoremap gitc  [config][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
 inoremap gitb  [bugfix][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
 inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left>
+
+function! Zoom ()
+    " check if is the zoomed state (tabnumber > 1 && window == 1)
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l:cur_winview = winsaveview()
+        let l:cur_bufname = bufname('')
+        tabclose
+        " restore the view
+        if l:cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+nmap <leader>z :call Zoom()<CR>
 
 " 状态栏显示函数名
 fun! ShowFuncName()
