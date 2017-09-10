@@ -27,7 +27,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'sheerun/vim-polyglot'
 
-Plugin 'vim-scripts/Conque-GDB'
+"Plugin 'vim-scripts/Conque-GDB'
 
 Plugin 'mbbill/undotree'
 
@@ -36,6 +36,7 @@ Plugin 'tpope/vim-surround'
 "Plugin 'mhinz/vim-startify'
 
 Plugin 'luochen1990/rainbow'
+Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'thaerkh/vim-workspace'
 
@@ -75,15 +76,15 @@ set nowb
 set showmatch       "括号匹配高亮显示
 set nowrapscan  "禁止循环查找方式  wrapscan 启用循环查找方式
 set fileencodings=utf-8,gbk,ucs-bom,GB2312,big5,cp936
-
 " 将制表符扩展为空格
 set expandtab
-" 设置编辑时制表符占用空格数,
+" 设置编辑时制表符占用空格数,  设定 tab 长度为 4
 set tabstop=4
-" 设置格式化时制表符占用空格数,表示每一级缩进的长度
+" 设置格式化时制表符占用空格数,表示每一级缩进的长度 设定 << 和 >> 命令移动时的宽度为 4
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
+"set autochdir               " 自动切换当前目录为当前文件所在的目录
 
 " 显示tab和空格 可打印字符显示开关
 "set list
@@ -151,10 +152,8 @@ au GUIEnter * simalt ~
 "------------------ Ag Setting-------------------------
 " When you press gv you Ag after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
 
 "------------------ Ctrlp Setting-------------------------
 "let g:ctrlp_map = '<leader>p'
@@ -290,7 +289,9 @@ if !empty("$HOME/.vim/plugged/tagbar")
     set tags+=/usr/local/include/tags
     set tags+=./tags
     let g:tagbar_autofocus=1
-    let g:tagbar_sort=0
+    let g:tagbar_sort=0  "关闭排序,即按标签本身在文件中的位置排序
+    "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
+    let g:tagbar_autopreview = 1
     ""设置tagbar使用的ctags的插件,必须要设置对    
     "let g:tagbar_ctags_bin='ctags'    
     "设置tagbar的窗口宽度    
@@ -304,26 +305,92 @@ endif
 
 "-----------------cscope Setting ----------------
 if has("cscope")
-  " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-  set cscopetag
-  set csprg=/usr/bin/cscope
-  set csto=0
-  set cst
-  set nocsverb
-  set cscopequickfix=s-,c-,d-,i-,t-,e-
-  " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
-  " else add the database pointed to by environment variable
-  elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-  endif
-  set csverb
-  " show msg when any other cscope db added
-  set cscopeverbose
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    set csprg=/usr/bin/cscope
+    "set cscopetag   "使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳转
+    set csto=0    "" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cst      "同时搜索cscope数据库和标签文件
+    set nocsverb
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    " add any database in current directory
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+    " else add the database pointed to by environment variable
+"    elseif $CSCOPE_DB != ""
+"        cs add $CSCOPE_DB
+"    endif
+    " show msg when any other cscope db added
+    "set cscopeverbose
 
-
+    nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>e :cs find e <C-R>=expand("<cWORD>")<CR><CR>
+    nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+    nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap ,c  :Rgrep <C-R>=expand("<cword>")<CR> *.c<CR><CR>
+    nmap ,j  :Rgrep <C-R>=expand("<cword>")<CR> *.java<CR><CR>
+    nmap ,h  :Rgrep <C-R>=expand("<cword>")<CR> *.h<CR><CR>
+    nmap ,mk :Rgrep <C-R>=expand("<cword>")<CR> *.mk<CR><CR>
+    nmap ,f  :find <cword>
 endif
+
+"---------------------- rainbow_parentheses Setting---------
+let g:rbpt_colorpairs = [
+            \ ['brown',       'RoyalBlue3'],
+            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkgray',    'DarkOrchid3'],
+            \ ['darkgreen',   'firebrick3'],
+            \ ['darkred',     'SeaGreen3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['brown',       'firebrick3'],
+            \ ['gray',        'RoyalBlue3'],
+            \ ['black',       'SeaGreen3'],
+            \ ['darkred',     'DarkOrchid3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['Darkblue',    'firebrick3'],
+            \ ['darkgreen',   'RoyalBlue3'],
+            \ ['darkcyan',    'SeaGreen3'],
+            \ ['red',         'firebrick3'],
+            \ ['darkcyan',    'RoyalBlue3'],
+            \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"---------------------- SrcExpl Setting---------
+nmap <F8> :SrcExplToggle<CR>
+let g:SrcExpl_winHeight = 8
+"let g:SrcExpl_refreshTime = 100
+let g:SrcExpl_jumpKey = "<ENTER>"
+let g:SrcExpl_gobackKey = "<SPACE>"
+" // In order to Avoid conflicts, the Source Explorer should know what plugins
+" // are using buffers. And you need add their bufname into the list below
+" // according to the command ":buffers!"
+let g:SrcExpl_pluginList = [
+        \ "tags",
+        \ "cscope.out",
+        \ "Source_Explorer"
+        \ ]
+" // Enable/Disable the local definition searching, and note that this is not
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now.
+" // It only searches for a match with the keyword according to command 'gd'
+let g:SrcExpl_searchLocalDef = 1
+
+" // Do not let the Source Explorer update the tags file when opening
+let g:SrcExpl_isUpdateTags = 0
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
+" //  create/update a tags file
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+
+" // Set "<F12>" key for updating the tags file artificially
+let g:SrcExpl_updateTagsKey = "<F11>"
 
 "------------------------------------------ Shotcut Setting ---------------------------------
 " 定义快捷键到行首和行尾
@@ -345,7 +412,7 @@ inoremap <C-d> <del>
 
 "系统剪贴板
 vmap <c-c> "+y<esc>
-nmap <c-v> "+p<esc>
+nmap <c-v> "+gp<esc>
 inoremap <c-v> <c-r>+
 
 ""设置切换Buffer快捷键"
@@ -371,6 +438,18 @@ inoremap gitf  [feature][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END
 inoremap gitc  [config][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
 inoremap gitb  [bugfix][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
 inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left>
+
+inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
+inoremap kk     //add czp@<C-R>=strftime("%Y/%m/%d")<CR>
+inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
+inoremap dlog   chenzhipeng3472@<C-R>=strftime("%Y/%m/%d")<CR>
+inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
+
+" 多窗口改变大小
+nmap    w<Up>  :resize +3<CR>
+nmap    w<Down>  :resize -3<CR>
+nmap    w<Left>  :vertical resize -3<CR>
+nmap    w<Right>  :vertical resize +3<CR>
 
 function! Zoom ()
     " check if is the zoomed state (tabnumber > 1 && window == 1)
