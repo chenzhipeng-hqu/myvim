@@ -54,6 +54,8 @@ Plugin 'chxuan/change-colorscheme'
 
 Plugin 'simplyzhao/cscope_maps.vim'
 
+Plugin 'scrooloose/nerdcommenter'
+
 call vundle#end()
 
 filetype on
