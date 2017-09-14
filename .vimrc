@@ -230,7 +230,7 @@ let     g:gitgutter_diff_args = '-w'
 nmap    gk :GitGutterPrevHunk<CR>
 nmap    gj :GitGutterNextHunk<CR>
 nmap    gd :GitGutterPreviewHunk<CR>
-nmap    gu :GitGutterUndoHunk<CR>
+nmap    gr :GitGutterUndoHunk<CR>
 nmap    gs :GitGutterStageHunk<CR>
 nmap    gc :pclose<CR>
 

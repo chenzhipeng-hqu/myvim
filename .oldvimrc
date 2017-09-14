@@ -1,0 +1,691 @@
+".vimrc for user
+
+
+"---------------------------------------- MyVim Setting -------------------------------------
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+Plugin 'kshenoy/vim-signature'
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"查看Git详细提交日志(类似gitk)
+"Bundle "gregsexton/gitv"
+
+"GitGutter 实时显示git更改
+Bundle "airblade/vim-gitgutter"
+
+"also can install git clone git://github.com/tpope/vim-fugitive.git
+Bundle "tpope/vim-fugitive"
+
+Bundle 'ctrlpvim/ctrlp.vim'
+
+Bundle 'tacahiroy/ctrlp-funky'
+
+Bundle 'sheerun/vim-polyglot'
+
+Bundle 'kien/rainbow_parentheses.vim'
+
+Plugin 'wesleyche/SrcExpl'
+
+Plugin 'oblitum/rainbow'
+
+"quick find file
+Bundle "wincent/command-t"
+
+Bundle 'juneedahamed/svnj.vim'
+
+Plugin 'simplyzhao/cscope_maps.vim'
+
+"airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'a.vim'
+
+Bundle 'chxuan/change-colorscheme'
+
+"Plugin 'bufexplorer.zip'
+
+"Markdown
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+
+"YouCompleteMe
+"Bundle 'Valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+syntax enable
+"filetype on
+"filetype plugin indent on
+syntax on  " 语法高亮
+set completeopt=longest,menu
+set cindent     "打开 'smartindent' 或 'cindent' 时，行的缩进根据 C 程序的要求自动调整
+set ignorecase    "忽略大小写  noignorecase  精确匹配大小写
+set incsearch   "打开显示查找匹配过程  noincsearch 打开显示查找匹配过程
+set hlsearch     "高亮搜索结果  nohlsearch 关闭高亮显示查找的文本
+set nu              "显示行号 set number
+set ic     " 忽略字符大小写
+set noswapfile
+set nobackup
+set nowb
+"set ai      "自动缩进
+set showmatch       "括号匹配高亮显示
+set nowrapscan  "禁止循环查找方式  wrapscan 启用循环查找方式
+set fileencodings=utf-8,gbk,ucs-bom,GB2312,big5,cp936
+
+" 自适应不同语言的智能缩进
+filetype indent on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数,
+set tabstop=4
+" 设置格式化时制表符占用空格数,表示每一级缩进的长度
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+
+" 显示tab和空格
+"set list
+" 设置tab和空格样式
+"set lcs=tab:\|\ ,nbsp:%,trail:-
+" 设定行首tab为灰色
+highlight LeaderTab guifg=#666666
+" 匹配行首tab
+match LeaderTab /^\t/
+
+"把 <leader> 设置成空格
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+" Height of the command bar
+set cmdheight=1
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+"let g:C_UseTool_cmake    = 'yes'
+"let g:C_UseTool_doxygen  = 'yes'
+
+" 总是显示状态栏
+set laststatus=2  "0 永远不;1 只有用分割窗口的时候（默认）;2 永远有
+
+" 高亮显示当前行/列
+set cursorline
+"set cursorcolumn
+
+"  设定配色方案
+colorscheme 256-jungle
+"colorscheme molokai "   设定配色方案
+"colorscheme murphy
+"colorscheme desert
+"colorscheme solarized
+"colorscheme adrian
+
+set t_Co=256  " 开启256颜色支持
+"set background=light
+set background=dark
+"
+"重新设置语法高亮
+if version > 580
+    hi clear
+    if exists("syntax_on")
+        syntax reset
+    endif
+endif
+"
+let g:colors_name="nslib_color256"
+
+"set CTER_BG=Black
+
+hi Normal               ctermfg=LightGray          " ctermbg=Black   " 正常模式下字体颜色和背景色
+"hi Normal               ctermfg=LightGray           ctermbg=${CTER_BG} " 正常模式下字体颜色和背景色
+"hi ColorColum           ctermfg=White           ctermbg=Grey    " 光标所在列
+"
+"hi ErrorMsg             term=standout
+"hi ErrorMsg             ctermfg=LightBlue       ctermbg=DarkBlue
+"hi WarningMsg           term=standout
+"hi WarningMsg           ctermfg=LightBlue       ctermbg=DarkBlue
+"hi ModeMsg              term=bold               cterm=bold
+"hi ModeMsg              ctermfg=LightBlue       ctermbg=Black
+"hi MoreMsg              term=bold               ctermfg=LightGreen
+"hi MoreMsg              ctermfg=LightBlue       ctermbg=Black
+"hi Question             term=standout           gui=bold
+"hi Question             ctermfg=LightBlue       ctermbg=Black
+"hi Error                term=bold               cterm=bold
+"hi Error                ctermfg=LightBlue       ctermbg=Black
+"
+hi LineNr               ctermfg=Blue    "   ctermbg=Black        "行号
+"hi CursorColumn         ctermfg=White           ctermbg=Grey
+"hi CursorLine           ctermfg=LightBlue       ctermbg=Black
+"hi ColorColumn          ctermfg=White           ctermbg=Grey
+"
+""hi IncSearch            ctermfg=Black           ctermbg=DarkGrey
+""hi Search               ctermfg=Black           ctermbg=DarkGrey
+"hi StatusLine           term=bold               cterm=bold
+"hi StatusLine           ctermfg=Black           ctermbg=Grey
+"hi StatusLineNC         term=bold               cterm=bold
+"hi StatusLineNC         ctermfg=Black           ctermbg=Grey
+"
+"hi VertSplit            ctermfg=Grey            ctermbg=Grey
+"hi Visual               term=bold               cterm=bold
+"hi Visual               ctermfg=Black           ctermbg=Grey
+"
+hi Pmenu         ctermfg=Black           "ctermbg=Grey                "弹出菜单
+hi PmenuSel      ctermfg=LightBlue       "ctermbg=DarkBlue            "菜单当前选项
+"
+hi Comment              ctermfg=Grey            "   ctermbg=Black        "   注释
+"hi PreProc              ctermfg=LightBlue            ctermbg=Black                           "预处理
+"hi Type                 ctermfg=Blue            ctermbg=Black           cterm=bold      "数据类型
+"hi Constant             ctermfg=Blue            ctermbg=Black           cterm=bold      "常量
+hi Statement            ctermfg=Magenta    " ctermbg=Black           cterm=bold      "控制语句
+hi Special              ctermfg=58             "ctermbg=Black           cterm=bold      "字符串中的特殊字符
+"hi SpecialKey           ctermfg=Red             ctermbg=Black           cterm=bold      "
+"hi Number               ctermfg=Green         "   ctermbg=Black                           "数字
+"hi cCppString           ctermfg=Red             ctermbg=Black                           "Cpp中的字符串
+hi String               ctermfg=Red         "    ctermbg=Black                           "字符串
+hi Identifier           ctermfg=DarkBlue         "   ctermbg=Black           cterm=bold     "函数名称
+"hi Operator             ctermfg=LightGreen                                      "yun suan fu
+hi Todo                 ctermfg=Black           ctermbg=Gray            cterm=bold      "TODO、HACK、FIXME等标签
+"hi NonText              ctermfg=LightBlue       ctermbg=Black
+"hi Directory            ctermfg=Blue            ctermbg=Black
+"hi Folded               ctermfg=DarkBlue        ctermbg=Black           cterm=bold
+"hi FoldColumn           ctermfg=LightBlue       ctermbg=Black
+"hi Underlined           ctermfg=LightBlue       ctermbg=Black           cterm=underline
+"hi Title                ctermfg=LightBlue       ctermbg=Black
+"hi Ignore               ctermfg=LightBlue       ctermbg=Black
+"
+"hi Directory            ctermfg=LightBlue       ctermbg=Black
+"hi browseSynopsis       ctermfg=LightBlue       ctermbg=Black
+"hi browseCurDir         ctermfg=LightBlue       ctermbg=Black
+"hi favoriteDirectory    ctermfg=LightBlue       ctermbg=Black
+"hi browseDirectory      ctermfg=LightBlue       ctermbg=Black
+"hi browseSuffixInfo     ctermfg=LightBlue       ctermbg=Black
+"hi browseSortBy         ctermfg=LightBlue       ctermbg=Black
+"hi browseFilter         ctermfg=LightBlue       ctermbg=Black
+"hi browseFiletime       ctermfg=LightBlue       ctermbg=Black
+"hi browseSuffixes       ctermfg=LightBlue       ctermbg=Black
+"
+"hi TagListComment       ctermfg=LightBlue       ctermbg=Black
+"hi TagListFileName      ctermfg=LightBlue       ctermbg=Black
+"hi TagListTitle         ctermfg=LightBlue       ctermbg=Black
+"hi TagListTagScope      ctermfg=LightBlue       ctermbg=Black
+"hi TagListTagName       ctermfg=LightBlue       ctermbg=Black
+"hi Tag                  ctermfg=LightBlue       ctermbg=Black
+
+"let g:solarized_termcolors=256
+""设置语法高亮颜色
+":highlight Comment guifg=seagreen ctermfg=darkmagenta
+":highlight Constant guifg=deeppink ctermfg=magenta
+":highlight Special guifg=deeppink ctermfg=magenta
+":highlight Statement gui=NONE guifg=blue ctermfg=cyan
+":highlight PreProc guifg=red ctermfg=red
+":highlight Type gui=NONE guifg=blue ctermfg=green
+set mouse=v
+
+
+" Mark 高亮多个单词
+" To enable the automatic restore of marks from a previous Vim session
+let g:mwAutoLoadMarks = 1
+"Especially if you use GVIM, you can switch to a richer palette of up to 18
+"colors:
+let g:mwDefaultHighlightingPalette = 'extended'
+
+"indent-guides
+"随 vim 自启动
+let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+
+autocmd BufRead *.txt set tw=78
+
+"记住最后一次编辑的位置
+autocmd BufReadPost *
+              \ if line("'\"") > 0&&line("'\"")<=line("$") |
+              \	exe "normal g'\"" |
+              \ endif
+
+"au BufReadPost * \
+"                if line("'"") > 0 |
+"                    if line("'"") <= line("$")|
+"                        exe("norm '"")|
+"                    else|
+"                        exe "norm $"|
+"                    endif|
+"                endif
+
+
+"------------------------------------------------ Setting ----------------------------------
+
+"----------------- Taglist setting --------------------
+set tags=tags;
+set tags+=/usr/include/c++/tags
+set tags+=/usr/local/include/tags
+set tags+=./tags
+let Tlist_Ctags_Cmd='/usr/bin/ctags' "因为我们放在环境变量里，所以可以直接执行
+let Tlist_Use_Right_Window = 1   " 让窗口显示在右边，0的话就是显示在左边
+"let Tlist_Auto_Open = 1
+let Tlist_Show_One_File=1    "让taglist不同时展示多个文件的函数列表
+let Tlist_Exit_OnlyWindow=1   "当taglist是最后一个分割窗口时，自动退出vim
+"是否一直处理tags.1:处理;0:不处理
+let Tlist_Process_File_Always=1 "实时更新tags
+let Tlist_Inc_Winwidth=0
+
+"----------------- cscopes setting---------------------
+
+"function! LoadCscopefile()
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set cscopetag   "使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳转
+    set csto=0    "" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cst      "同时搜索cscope数据库和标签文件
+    set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+    set nocsverb
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+"    endif
+    set csverb
+endif
+"endfunction
+"au  VimEnter * call LoadCscopefile()    " 启动vim时，自动执行这个函数。
+
+
+"----------------- Nerdtree Setting ------------------
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=32
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="right"
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree 子窗口中不显示冗余帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+
+let g:NERDTree_title='NERD Tree'
+
+function! NERDTree_Start()
+     exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+     return 1
+endfunction
+
+
+"---------------- LookupFile Setting ------------------
+let g:LookupFile_MinPatLength = 3               "最少输入2个字符才开始查找
+let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+
+"if filereadable("./filenametags")
+"    let g:LookupFile_TagExpr ='"./filenametags"'
+"endif
+
+" let g:LookupFile_TagExpr ='"/home/xukunfeng/code/TVOS-01.09.60/filenametags"'
+" lookup file with ignore case
+
+function! LoadLookUpTag()
+     "let f1 = expand("%:p:h")
+	 let f = getcwd()
+     "let lookfile =  f . '/filenametags'
+     "let lookfile =   "/home/chenzhipeng3472/rtags/lookuptags/".substitute(f,'/','_','g').".filenametags"
+     let tagsfile =   "/home/chenzhipeng3472/tags/lookuptags/".substitute(f,'/','_','g').".tags"
+     let scopefile =  "/home/chenzhipeng3472/tags/lookuptags/".substitute(f,'/','_','g').".cscope_file"
+"     if filereadable(lookfile)
+"          let g:LookupFile_TagExpr = string(lookfile)
+"     endif
+     if filereadable(tagsfile)
+          execute  "set tags =".tagsfile
+     endif
+     if filereadable(scopefile)
+          execute  "cs add  ".scopefile
+     endif
+"	 let mylist = ["/home/xukunfeng/code/TVOS-01.09.60/customers", "/home/xukunfeng/dtv/customers/","/home/xukunfeng/6A608/TVOS-01.09.60/customers/" ]
+"	 for item in mylist
+"	     if !stridx( f1, item)
+"	        execute "set path=".item."**"
+"	     endif
+"	 endfor
+endfunction
+
+au  VimEnter * call LoadLookUpTag()    " 启动vim时，自动执行这个函数。
+
+
+"---------------- WinManager setting ------------------
+let g:winManagerWindowLayout='TagList'
+"let g:winManagerWindowLayout = 'FileExplorer|TagList'
+let g:winManagerWidth = 40
+let g:winManagerHeight = 80
+
+
+" ---------------- MiniBufferExplorer -----------------
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+
+
+"---------------- SuperTab Setting --------------------
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+
+
+"------------------ ctrlP Setting-------------------------
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+"map <leader>o :CtrlPMixed<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=25
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=900
+let g:ctrlp_follow_symlinks=1
+
+nnoremap <Leader>o :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>o :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_by_filename = 1
+
+
+"-------------- neocomplcache Setting ------------
+let g:neocomplcache_enable_at_startup = 1
+
+
+"------------------- svn Setting -----------------
+let g:svnj_custom_statusbar_ops_hide = 1
+let g:svnj_browse_cache_all = 1
+"let g:svnj_allow_leader_mappings=1
+
+
+"----------------- Airline Setting ----------------
+"airline
+""设置默认启动
+"Thisabled by default; add the following to your vimrc to enable the
+""extension:
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"显示 buffer 的数字标签
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"
+
+
+"--------------------- Python Setting -------------------
+function HeaderPython()
+    call setline(1, "#!/usr/bin/python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    call append(2, "")
+    call append(3, "# *************************************************************")
+    call append(4, "# Filename @ " . expand("%:t"))
+    call append(5, "# Author @ chenzhipeng")
+    call append(6, "# Create date @ " . strftime('%Y-%m-%d %T', localtime()))
+    call append(7, "# Description @ ")
+    call append(8, "# *************************************************************")
+    call append(9, "# Script starts from here")
+    normal G
+    normal o
+endf
+
+autocmd bufnewfile *.py call HeaderPython()
+
+
+"----------------------- clang Setting ----------------
+"let g:clang_use_library = 1
+"let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+"let g:clang_complete_copen=1
+"let g:clang_periodic_quickfix = 1
+"let g:clang_snippets = 1
+"let g:clang_close_preview = 1
+"let g:clang_user_options = '-stdlib=libc++ -std=c++11 -IIncludePath'
+
+
+"---------------------- rainbow_parentheses Setting---------
+let g:rbpt_colorpairs = [
+            \ ['brown',       'RoyalBlue3'],
+            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkgray',    'DarkOrchid3'],
+            \ ['darkgreen',   'firebrick3'],
+            \ ['darkcyan',    'RoyalBlue3'],
+            \ ['darkred',     'SeaGreen3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['brown',       'firebrick3'],
+            \ ['gray',        'RoyalBlue3'],
+            \ ['black',       'SeaGreen3'],
+            \ ['darkred',     'DarkOrchid3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['Darkblue',    'firebrick3'],
+            \ ['darkgreen',   'RoyalBlue3'],
+            \ ['darkcyan',    'SeaGreen3'],
+            \ ['red',         'firebrick3'],
+            \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+
+"------------------------------------------ Shotcut Setting ---------------------------------
+
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggl
+
+" 多窗口改变大小
+nmap    w<Up>  :resize +3<CR>
+nmap    w<Down>  :resize -3<CR>
+nmap    w<Left>  :vertical resize -3<CR>
+nmap    w<Right>  :vertical resize +3<CR>
+
+function! Zoom ()
+    " check if is the zoomed state (tabnumber > 1 && window == 1)
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l:cur_winview = winsaveview()
+        let l:cur_bufname = bufname('')
+        tabclose
+        " restore the view
+        if l:cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+nmap <leader>z :call Zoom()<CR>
+
+
+"""""""""""""""""""""""""""""""
+"git log
+""""""""""""""""""""""""""""""""
+nmap :gl :!git gl %<cr>
+inoremap gitf  [feature][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
+inoremap gitc  [config][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
+inoremap gitb  [bugfix][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
+inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left>
+
+"GitGutter config
+let g:gitgutter_diff_args = '-w'
+nmap    gj :GitGutterPrevHunk<CR>
+nmap    gk :GitGutterNextHunk<CR>
+nmap    gd :GitGutterPreviewHunk<CR>
+
+inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
+inoremap kk     //add czp@<C-R>=strftime("%Y%m%d")<CR>
+inoremap dlog   czp@<C-R>=strftime("%Y%m%d")<CR>
+inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
+
+" 状态栏显示函数名
+fun! ShowFuncName()
+    let lnum = line(".")
+    let col = col(".")
+    echohl ModeMsg
+    echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
+    echohl None
+    call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+map ff :call ShowFuncName() <CR>
+
+"手抖
+nnoremap ： :
+cnoremap Q! q!
+command Wq wq
+command Q q
+command WQ wq
+ab itn int
+ab mian main
+
+"映射LookupFile为,lk
+nmap <silent> ,lk :LUTags<cr>
+"映射LUBufs为,ll
+nmap <silent> ,ll :LUBufs<cr>
+"映射LUWalk为,lw
+nmap <silent> ,lw :LUWalk<cr>)
+" lookup file tag file
+nmap <silent> <Space>y "ayiw
+nmap <silent> <Space>p viw"ap
+
+""设置切换Buffer快捷键"
+nnoremap bn :bn<CR>
+nnoremap bp :bp<CR>
+
+nnoremap <Leader>b :ls<CR>:b<Space>
+
+nnoremap ; :
+xnoremap p pgvy
+
+noremap <silent> bu :BufExplorer<CR>
+function! Duplication()
+    let f = expand("%:p:h")."/"
+    let filename = input("[Duplicant] Please input filename:".f )
+    exe "w ".f.filename
+    exe "hide edit ".f.filename
+    echo filename
+endfunction
+
+nnoremap ,dd :call Duplication()<CR>
+
+"在右下角显示 quickfix
+nnoremap <F2> :botright copen<CR>
+inoremap <F2> <Esc>:botright copen<CR>
+nnoremap cl :cclose<CR>
+"inoremap cl <Esc>:cclose<CR>
+"nnoremap <F2> :set number! number?<CR>
+nmap <F3> :cp<cr>
+nmap <F4> :cn<cr>
+"nmap <F6> :cw<cr>
+nmap <F6> :set relativenumber! relativenumber?<CR>
+"signature config
+"Open location list and display marks from current buffer
+nmap    <F7> m/
+"nnoremap <F8> :set hlsearch! hlsearch?<CR>
+"Delete all marks from the current buffer
+nmap    <F10> m<Space>
+" 粘贴代码时取消自动缩进
+set pastetoggle=<F11>
+map <F12> :NERDTreeToggle<CR>
+
+nmap ,o  :hide edit <C-R>=expand("<cfile>")<CR><CR>
+nmap ,>  :!echo `pwd``echo /`% >> ~/.vimfilelist
+nmap ,<  :hide edit ~/.vimfilelist
+
+nmap tl :WMToggle<cr>
+
+nmap <C-A> :w<cr>
+
+nmap ,vimrc :hide edit ~/.vimrc<cr>
+
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>
+
+" Fast saving
+nmap <space>w <Esc>:mks!<cr>
+inoremap <leader>w <Esc>:mks!<cr>i
+
+"inoremap <C-h> <Left>
+"imap  <c-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-l> <Right>
+
+nmap <space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <space>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <space>e :cs find e <C-R>=expand("<cWORD>")<CR><CR>
+nmap <space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <space>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap ,c  :Rgrep <C-R>=expand("<cword>")<CR> *.c<CR><CR>
+nmap ,j  :Rgrep <C-R>=expand("<cword>")<CR> *.java<CR><CR>
+nmap ,h  :Rgrep <C-R>=expand("<cword>")<CR> *.h<CR><CR>
+nmap ,mk :Rgrep <C-R>=expand("<cword>")<CR> *.mk<CR><CR>
+nmap ,f  :find <cword>
+
+" 定义快捷键到行首和行尾
+nmap lb 0
+nmap le $
+
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+function! VisualSelection(direction) range
+     let l:saved_reg = @"
+     execute "normal! vgvy"
+
+     let l:pattern = escape(@", '\\/.*$^~[]')
+     let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+     if a:direction == 'b'
+          execute "normal ?" . l:pattern . "^M"
+     elseif a:direction == 'gv'
+          call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+     elseif a:direction == 'replace'
+          call CmdLine("%s" . '/'. l:pattern . '/')
+     elseif a:direction == 'f'
+          execute "normal /" . l:pattern . "^M"
+     endif
+
+     let @/ = l:pattern
+     let @" = l:saved_reg
+endfunction
+
+nnoremap gs <C-W><C-W>
+
+
+
+"------End .vimrc------
