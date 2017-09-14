@@ -11,7 +11,8 @@ call vundle#begin()
 
 Bundle 'VundleVim/Vundle.vim'
 
-Plugin 'kshenoy/vim-signature'
+"Plugin 'kshenoy/vim-signature'
+Plugin 'markjump.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -22,7 +23,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
-Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'sheerun/vim-polyglot'
@@ -33,9 +34,9 @@ Plugin 'mbbill/undotree'
 
 Plugin 'tpope/vim-surround'
 
-"Plugin 'mhinz/vim-startify'
+Plugin 'mhinz/vim-startify'
 
-Plugin 'luochen1990/rainbow'
+"Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'thaerkh/vim-workspace'
@@ -87,15 +88,15 @@ set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
 "set autochdir               " 自动切换当前目录为当前文件所在的目录
-
+set helplang=cn
 " 显示tab和空格 可打印字符显示开关
 "set list
 " 设置tab和空格样式
 "set lcs=tab:\|\ ,nbsp:%,trail:-
 " 设定行首tab为灰色
 highlight LeaderTab guifg=#666666
-" 匹配行首tab
 match LeaderTab /^\t/
+set wildmenu        "vim自身命令行模式智iii能补全iii 匹配行首tab
 
 "把 <leader> 设置成空格
 let mapleader = "\<Space>"
@@ -411,6 +412,12 @@ inoremap <c-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 inoremap <C-d> <del>
+
+"command mode direction key
+"cnoremap <c-h> <left>
+"cnoremap <c-l> <right>
+"cnoremap <c-j> <down>
+"cnoremap <c-k> <up>
 
 "系统剪贴板
 vmap <c-c> "+y<esc>
