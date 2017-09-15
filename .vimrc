@@ -4,7 +4,7 @@
 set nocompatible         "disable vi
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -56,6 +56,7 @@ Plugin 'simplyzhao/cscope_maps.vim'
 
 Plugin 'scrooloose/nerdcommenter'
 
+Plugin 'Mark'
 call vundle#end()
 
 filetype on
@@ -118,6 +119,8 @@ set laststatus=2  "0 永远不;1 只有用分割窗口的时候（默认）;2 �
 " 高亮显示当前行/列
 set cursorline
 "set cursorcolumn
+autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
 "colorscheme 256-jungle
@@ -148,14 +151,13 @@ autocmd BufReadPost *
 "默认最大化窗口打开
 au GUIEnter * simalt ~
 
+"------------------------------------------------ Setting ----------------------------------*/
 
-"------------------------------------------------ Setting ----------------------------------
-
-"------------------ Ag Setting-------------------------
-" When you press gv you Ag after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+"------------------ Ag Setting-------------------------*/
+" When you press gv you Ag after the selected text*/
+"vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+"vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 "------------------ Ctrlp Setting-------------------------
 "let g:ctrlp_map = '<leader>p'
