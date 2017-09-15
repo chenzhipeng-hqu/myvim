@@ -11,8 +11,7 @@ call vundle#begin()
 
 Bundle 'VundleVim/Vundle.vim'
 
-"Plugin 'kshenoy/vim-signature'
-Plugin 'markjump.vim'
+Plugin 'kshenoy/vim-signature'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -23,8 +22,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
-"Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'sheerun/vim-polyglot'
 
@@ -310,8 +309,8 @@ endif
 if has("cscope")
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set csprg=/usr/bin/cscope
-    "set cscopetag   "使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳转
-    set csto=0    "" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cscopetag   "使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳转
+    "set csto=0    "" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库; 缺省值为 0
     set cst      "同时搜索cscope数据库和标签文件
     set nocsverb
     set cscopequickfix=s-,c-,d-,i-,t-,e-
@@ -324,6 +323,7 @@ if has("cscope")
 "    endif
     " show msg when any other cscope db added
     "set cscopeverbose
+	set cspc=3    "会显示文件路径的最后 3 个部分，包括文件名本身
 
     nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
     nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -331,7 +331,8 @@ if has("cscope")
     nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
     nmap <leader>e :cs find e <C-R>=expand("<cWORD>")<CR><CR>
     nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+    "nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+	nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
     nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
     nmap ,c  :Rgrep <C-R>=expand("<cword>")<CR> *.c<CR><CR>
     nmap ,j  :Rgrep <C-R>=expand("<cword>")<CR> *.java<CR><CR>
@@ -486,4 +487,3 @@ fun! ShowFuncName()
     call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
 
-"------End .vimrc------
