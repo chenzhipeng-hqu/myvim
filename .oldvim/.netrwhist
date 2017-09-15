@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/ext_disk/msd3553_tcl/customers/customer/customer_tcl'
+let g:netrw_dirhist_2='/disk2/chenzhipeng3472/MSD3553/tcl_hitachi'
+let g:netrw_dirhist_3='/disk2/chenzhipeng3472/MSD3553/r02/.repo'
+let g:netrw_dirhist_4='/disk2/chenzhipeng3472/MSD3553/r02/.repo/repo'
+let g:netrw_dirhist_5='/disk2/chenzhipeng3472/practice_repo/.repo/manifests.git'

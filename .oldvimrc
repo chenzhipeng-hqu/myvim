@@ -536,7 +536,7 @@ nmap    gd :GitGutterPreviewHunk<CR>
 
 inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
 inoremap kk     //add czp@<C-R>=strftime("%Y%m%d")<CR>
-inoremap dlog   czp@<C-R>=strftime("%Y%m%d")<CR>
+inoremap dlog   chenzhipeng3472@<C-R>=strftime("%Y/%m/%d")<CR>
 inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
 
 " ×´Ì¬À¸ÏÔÊ¾º¯ÊýÃû
@@ -684,7 +684,7 @@ function! VisualSelection(direction) range
      let @" = l:saved_reg
 endfunction
 
-nnoremap gs <C-W><C-W>
+"nnoremap gs <C-W><C-W>
 
 
 

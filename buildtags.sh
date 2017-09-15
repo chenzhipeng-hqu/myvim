@@ -1,7 +1,7 @@
 #!/bin/sh
 string=`pwd -P`
 ctags=${string//\//_}.tags
-ctagsstring="/home/chenzhipeng3472/tags/lookuptags/"$ctags
+ctagsstring="$HOME/tags/lookuptags/"$ctags
 echo "Now is building ctags"
 start=$(date +%s)  
 ctags -R --tag-relative -f $ctagsstring
@@ -10,7 +10,7 @@ ctags -R --tag-relative -f $ctagsstring
 echo "Now is building cscope tags"
 
 cscope_tags=${string//\//_}.cscope_file
-cscope_string="/home/chenzhipeng3472/tags/lookuptags/"$cscope_tags
+cscope_string="$HOME/tags/lookuptags/"$cscope_tags
 
 find `pwd -P` -type f -iname "*.c" -o -type f -iname "*.h" -o -type f -iname "*.cpp" -o -type f -iname "*.java" -o -type f -iname "*.sh"  -o -type f -iname "*.inl" > "cscope.files"
 

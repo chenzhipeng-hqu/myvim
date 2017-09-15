@@ -1,0 +1,152 @@
+syntax enable
+filetype on
+filetype plugin indent on
+syntax on
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+:set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+nmap <F3> :cn<cr>
+nmap <F4> :cp<cr>
+nmap <F6> :cw<cr>
+filetype plugin indent on
+set completeopt=longest,menu
+let g:NERDTree_title='NERD Tree'
+let g:winManagerWindowLayout='TagList'
+nmap wm :WMToggle<cr>
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+nmap <C-S> :w<cr>
+set shiftwidth=4
+set tabstop=4
+set cindent
+set ignorecase
+nmap <F12> :hide edit ~/.vimrc<cr>
+ab itn int
+ab mian main
+inoremap gitlog  [what]<CR>[why]<CR>[how]<UP><UP><Right>
+let g:miniBufExplMapCTabSwitchBufs=1
+nnoremap gs <C-W><C-W>
+filetype plugin indent on
+inoremap  ( ()<LEFT>
+set incsearch
+set hlsearch
+set number
+
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+""""""""""""""""""""""""""""""
+
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+function! VisualSelection(direction) range
+	let l:saved_reg = @"
+	execute "normal! vgvy"
+
+	let l:pattern = escape(@", '\\/.*$^~[]')
+	let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+	if a:direction == 'b'
+		execute "normal ?" . l:pattern . "^M"
+	elseif a:direction == 'gv'
+		call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+	elseif a:direction == 'replace'
+		call CmdLine("%s" . '/'. l:pattern . '/')
+	elseif a:direction == 'f'
+		execute "normal /" . l:pattern . "^M"
+	endif
+
+	let @/ = l:pattern
+	let @" = l:saved_reg
+endfunction
+
+" Height of the command bar
+set cmdheight=2
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+set nobackup
+set nowb
+set noswapfile
+
+"cs add /home/xukunfeng/code/TVOS-01.09.60/cscope.out  /home/xukunfeng/code/TVOS-01.09.60/
+cs add ~/cscope.out /home/xukunfeng/code/TVOS-01.09.60/
+
+nmap <space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <space>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <space>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <space>i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
+nmap <space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap ,c  :Rgrep <C-R>=expand("<cword>")<CR> *.c<CR><CR>
+nmap ,j  :Rgrep <C-R>=expand("<cword>")<CR> *.java<CR><CR>
+nmap ,h  :Rgrep <C-R>=expand("<cword>")<CR> *.h<CR><CR>
+nmap ,mk :Rgrep <C-R>=expand("<cword>")<CR> *.mk<CR><CR>
+nmap ,f  :FRgrep <CR>
+set background=dark
+colorscheme 256-jungle
+let g:solarized_termcolors=256
+""""""""""""""""""""""""""""""
+" lookupfile setting
+" """"""""""""""""""""""""""""""
+ let g:LookupFile_MinPatLength = 4               "最少输入2个字符才开始查找
+ let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+ let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+ let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+ let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+ "映射LookupFile为,lk
+ nmap <silent> ,lk :LUTags<cr>
+ "映射LUBufs为,ll
+ nmap <silent> ,ll :LUBufs<cr>
+ "映射LUWalk为,lw
+ nmap <silent> ,lw :LUWalk<cr>)
+ " lookup file tag file
+ let g:LookupFile_TagExpr ='"/home/xukunfeng/code/TVOS-01.09.60/filenametags"'
+ " lookup file with ignore case
+:set tag=~/code/TVOS-01.09.60/RedLion/tags
+:set mouse=v
+let g:ctrlp_max_height = 20
+let g:ctrlp_by_filename = 1
+if filereadable("~/cscope.out")
+	cs add ~/.csope.out
+elseif $CSCOPE_DB  != ""
+	cs add $CSCOPE_DB
+endif
+let g:neocomplcache_enable_at_startup = 1 
+nmap ,o  :hide edit <C-R>=expand("<cfile>")<CR><CR>
+nmap ,>  :!echo `pwd``echo /`% >> ~/.vimfilelist
+nmap ,<  :hide edit ~/.vimfilelist
+function! NERDTree_Start()
+	exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+	return 1
+endfunction
