@@ -496,6 +496,9 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 
+"---------------------- SrcExpl Setting---------
+"nmap <F8> :SrcExplToggle<CR>
+
 "------------------------------------------ Shotcut Setting ---------------------------------
 
 " 快捷键 i 开/关缩进可视化
