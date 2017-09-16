@@ -4,3 +4,4 @@ note.txt
 tags
 .hg*
 tmp/*
+.git/
