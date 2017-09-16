@@ -197,6 +197,17 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
             \ --ignore .DS_Store
             \ -g ""'
 
+" default colors/groups
+" you may define your own colors in you vimrc file, in the form as below:
+
+"----------------- mark Setting ------------------
+hi MarkWord7  ctermbg=DarkCyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
+hi MarkWord8  ctermbg=DarkGreen    ctermfg=Black  guibg=#A4E57E    guifg=Black
+hi MarkWord9  ctermbg=DarkYellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
+hi MarkWord10  ctermbg=DarkRed      ctermfg=Black  guibg=#FF7272    guifg=Black
+hi MarkWord11  ctermbg=DarkMagenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
+hi MarkWord12  ctermbg=DarkBlue     ctermfg=Black  guibg=#9999FF    guifg=Black
+
 "----------------- Nerdtree Setting ------------------
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
