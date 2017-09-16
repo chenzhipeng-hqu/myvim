@@ -62,14 +62,15 @@ Bundle 'chxuan/change-colorscheme'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+
+"filetype on
+filetype plugin on
+"filetype plugin indent on    " required
 
 syntax enable
-"filetype on
-"filetype plugin indent on
 syntax on  " 语法高亮
 set completeopt=longest,menu
-set cindent     "打开 'smartindent' 或 'cindent' 时，行的缩进根据 C 程序的要求自动调整
+"set cindent     "打开 'smartindent' 或 'cindent' 时，行的缩进根据 C 程序的要求自动调整
 set ignorecase    "忽略大小写  noignorecase  精确匹配大小写
 set incsearch   "打开显示查找匹配过程  noincsearch 打开显示查找匹配过程
 set hlsearch     "高亮搜索结果  nohlsearch 关闭高亮显示查找的文本
@@ -125,6 +126,10 @@ set laststatus=2  "0 永远不;1 只有用分割窗口的时候（默认）;2 永远有
 " 高亮显示当前行/列
 set cursorline
 "set cursorcolumn
+
+"set cursorcolumn
+autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
 colorscheme 256-jungle
@@ -529,13 +534,17 @@ inoremap gitb  [bugfix][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END>
 inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left>
 
 "GitGutter config
-let g:gitgutter_diff_args = '-w'
-nmap    gj :GitGutterPrevHunk<CR>
-nmap    gk :GitGutterNextHunk<CR>
+let     g:gitgutter_diff_args = '-w'
+nmap    gk :GitGutterPrevHunk<CR>
+nmap    gj :GitGutterNextHunk<CR>
 nmap    gd :GitGutterPreviewHunk<CR>
+nmap    gr :GitGutterUndoHunk<CR>
+nmap    gs :GitGutterStageHunk<CR>
+nmap    gc :pclose<CR>
 
 inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
 inoremap kk     //add czp@<C-R>=strftime("%Y%m%d")<CR>
+inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
 inoremap dlog   chenzhipeng3472@<C-R>=strftime("%Y/%m/%d")<CR>
 inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
 
@@ -554,20 +563,12 @@ map ff :call ShowFuncName() <CR>
 nnoremap ： :
 cnoremap Q! q!
 command Wq wq
-command Q q
-command WQ wq
-ab itn int
 ab mian main
 
-"映射LookupFile为,lk
-nmap <silent> ,lk :LUTags<cr>
-"映射LUBufs为,ll
-nmap <silent> ,ll :LUBufs<cr>
-"映射LUWalk为,lw
-nmap <silent> ,lw :LUWalk<cr>)
-" lookup file tag file
-nmap <silent> <Space>y "ayiw
-nmap <silent> <Space>p viw"ap
+"系统剪贴板
+vmap <c-c> "+y<esc>
+nmap <c-v> "+gp<esc>
+inoremap <c-v> <c-r>+
 
 ""设置切换Buffer快捷键"
 nnoremap bn :bn<CR>
@@ -576,7 +577,7 @@ nnoremap bp :bp<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
 
 nnoremap ; :
-xnoremap p pgvy
+"xnoremap p pgvy
 
 noremap <silent> bu :BufExplorer<CR>
 function! Duplication()
@@ -590,13 +591,17 @@ endfunction
 nnoremap ,dd :call Duplication()<CR>
 
 "在右下角显示 quickfix
-nnoremap <F2> :botright copen<CR>
-inoremap <F2> <Esc>:botright copen<CR>
+nnoremap col  :colder<CR>
+nnoremap co  <Esc>:botright copen<CR>
+"nnoremap <F2> :botright copen<CR>
+"inoremap <F2> <Esc>:botright copen<CR>
 nnoremap cl :cclose<CR>
 "inoremap cl <Esc>:cclose<CR>
 "nnoremap <F2> :set number! number?<CR>
 nmap <F3> :cp<cr>
 nmap <F4> :cn<cr>
+nmap cp :cp<cr>
+nmap cn :cn<cr>
 "nmap <F6> :cw<cr>
 nmap <F6> :set relativenumber! relativenumber?<CR>
 "signature config
@@ -621,10 +626,10 @@ nmap ,vimrc :hide edit ~/.vimrc<cr>
 
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
