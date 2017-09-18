@@ -21,7 +21,7 @@ sed -i 's/^/"/;s/$/"/' cscope.files
 cscope -RbqC -i cscope.files -f "$cscope_string"
 rm -rf cscope.files
 
-echo "Now is building filenametags"
+echo "End all buildings "
 
 end=$(date +%s)
 time=$(( $end - $start ))
