@@ -59,8 +59,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Mark'
 call vundle#end()
 
-filetype on
-"filetype plugin on
+"filetype on
+filetype plugin on
 "filetype plugin indent on
 
 syntax enable
@@ -123,7 +123,7 @@ autocmd InsertLeave * se nocul  " 用浅色高亮当前行
 autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
-"colorscheme 256-jungle
+colorscheme 256-jungle
 "colorscheme molokai "   设定配色方案
 "colorscheme murphy
 "colorscheme desert
@@ -442,9 +442,11 @@ inoremap <c-v> <c-r>+
 nnoremap bn :bn<CR>
 nnoremap bp :bp<CR>
 nnoremap bu :buffers<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
 
 "在右下角显示 quickfix
 nnoremap col  :colder<CR>
+nnoremap cne  :cnewer<CR>
 nnoremap co  <Esc>:botright copen<CR>
 "nnoremap <F2> :botright copen<CR>
 "inoremap <F2> <Esc>:botright copen<CR>
@@ -452,6 +454,8 @@ nnoremap cl :cclose<CR>
 "inoremap cl <Esc>:cclose<CR>
 nmap <F3> :cprev<cr>
 nmap <F4> :cnext<cr>
+nmap cp :cp<cr>
+nmap cn :cn<cr>
 
 nmap ,vimrc :hide edit ~/.vimrc<cr>
 nnoremap ; :
