@@ -124,23 +124,6 @@ autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
 colorscheme 256-jungle
-"colorscheme molokai "   设定配色方案
-"colorscheme murphy
-"colorscheme desert
-"colorscheme solarized
-"colorscheme adrian
-
-set t_Co=256  " 开启256颜色支持
-set background=light
-"set background=dark
-"
-"重新设置语法高亮
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
 
 "记住最后一次编辑的位置
 autocmd BufReadPost *
@@ -151,6 +134,13 @@ autocmd BufReadPost *
 "默认最大化窗口打开
 au GUIEnter * simalt ~
 
+"indent-guides
+"随 vim 自启动
+let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=5
 "------------------------------------------------ Setting ----------------------------------*/
 
 "------------------ Ag Setting-------------------------*/
