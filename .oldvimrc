@@ -547,7 +547,7 @@ nmap    gc :pclose<CR>
 
 inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
 inoremap kk     //add czp@<C-R>=strftime("%Y%m%d")<CR>
-inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
+inoremap merr   #error  ""<LEFT>
 inoremap dlog   chenzhipeng3472@<C-R>=strftime("%Y/%m/%d")<CR>
 inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
 
@@ -595,6 +595,7 @@ nnoremap ,dd :call Duplication()<CR>
 
 "тзсроб╫готй╬ quickfix
 nnoremap col  :colder<CR>
+nnoremap cne  :cnewer <CR>
 nnoremap co  <Esc>:botright copen<CR>
 "nnoremap <F2> :botright copen<CR>
 "inoremap <F2> <Esc>:botright copen<CR>
