@@ -56,6 +56,8 @@ Plugin 'simplyzhao/cscope_maps.vim'
 
 Plugin 'scrooloose/nerdcommenter'
 
+Plugin 'Shougo/neocomplcache.vim'
+
 Plugin 'Mark'
 call vundle#end()
 
@@ -198,6 +200,9 @@ hi MarkWord10  ctermbg=DarkRed      ctermfg=Black  guibg=#FF7272    guifg=Black
 hi MarkWord11  ctermbg=DarkMagenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
 hi MarkWord12  ctermbg=DarkBlue     ctermfg=Black  guibg=#9999FF    guifg=Black
 
+"-------------- neocomplcache Setting ------------
+let g:neocomplcache_enable_at_startup = 1
+
 "----------------- Nerdtree Setting ------------------
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
@@ -316,7 +321,8 @@ if has("cscope")
     "set csto=0    "" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库; 缺省值为 0
     set cst      "同时搜索cscope数据库和标签文件
     set nocsverb
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    "set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
     " add any database in current directory
 "    if filereadable("cscope.out")
 "        cs add cscope.out
@@ -431,8 +437,9 @@ inoremap <c-v> <c-r>+
 ""设置切换Buffer快捷键"
 nnoremap bn :bn<CR>
 nnoremap bp :bp<CR>
-nnoremap bu :buffers<CR>
+"nnoremap bu :buffers<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap bu :ls<CR>:b<Space>
 
 "在右下角显示 quickfix
 nnoremap col  :colder<CR>
