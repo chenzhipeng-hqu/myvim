@@ -156,10 +156,10 @@ let g:indent_guides_guide_size=5
 "let g:ctrlp_cmd = 'CtrlP'
 "map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|neocomplcache)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
-let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_working_path_mode=0
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
@@ -181,13 +181,14 @@ let g:ctrlsf_auto_close = 0
 let g:ctrlsf_ignore_dir = ['vendor', 'bower_components','node_modules']
 
 "use ag as the ctrlp command
-let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
-            \ --ignore .git
-            \ --ignore out
-            \ --ignore .svn
-            \ --ignore .hg
-            \ --ignore .DS_Store
-            \ -g ""'
+"let g:ctrlp_user_command = 'find %s -type f'
+"let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
+"            \ --ignore .git
+"            \ --ignore out
+"            \ --ignore .svn
+"            \ --ignore .hg
+"            \ --ignore .DS_Store
+"            \ -g ""'
 
 " default colors/groups
 " you may define your own colors in you vimrc file, in the form as below:
@@ -293,13 +294,13 @@ let g:workspace_autosave_always = 1
 let g:workspace_autosave_ignore = ['gitcommit']
 
 "-----------------tagbar Setting ----------------
-if !empty("$HOME/.vim/plugged/tagbar")
-    "set tags=tags;
+if !empty("$HOME/.vim/bundle/tagbar")
+"    set tags=tags;
     "set tags+=/usr/include/c++/tags
     "set tags+=/usr/local/include/tags
-    set tags+=./tags
+"    set tags+=./tags
     let g:tagbar_autofocus=1
-    let g:tagbar_sort=0  "关闭排序,即按标签本身在文件中的位置排序
+"    let g:tagbar_sort=0  "关闭排序,即按标签本身在文件中的位置排序
     "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
     let g:tagbar_autopreview = 1
     ""设置tagbar使用的ctags的插件,必须要设置对    
@@ -310,6 +311,8 @@ if !empty("$HOME/.vim/plugged/tagbar")
     "let g:tagbar_right=1    
     "打开文件自动 打开tagbar    
     "autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()    
+    let g:tagbar_right=1
+    let g:tagbar_zoomwidth=1
     nnoremap <silent> tl :TagbarToggle<CR>
 endif
 
