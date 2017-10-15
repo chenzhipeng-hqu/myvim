@@ -40,7 +40,8 @@ Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'thaerkh/vim-workspace'
 
-Plugin 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
+Plugin 'Tagbar'
 
 Plugin 'wesleyche/SrcExpl'
 
@@ -126,6 +127,27 @@ autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
 colorscheme 256-jungle
+
+"重新设置语法高亮
+if version > 580
+    hi clear
+    if exists("syntax_on")
+        syntax reset
+    endif
+endif
+
+"
+hi LineNr               ctermfg=Blue    "   ctermbg=Black        "行号
+"
+"
+hi Pmenu         ctermfg=Black           "ctermbg=Grey                "弹出菜单
+hi PmenuSel      ctermfg=LightBlue       "ctermbg=DarkBlue            "菜单当前选项
+hi Comment              ctermfg=Grey            "   ctermbg=Black        "   注释
+hi Statement            ctermfg=Magenta    " ctermbg=Black           cterm=bold      "控制语句
+hi Special              ctermfg=58             "ctermbg=Black           cterm=bold      "字符串中的特殊字符
+hi String               ctermfg=Red         "    ctermbg=Black                           "字符串
+hi Identifier           ctermfg=DarkBlue         "   ctermbg=Black           cterm=bold     "函数名称
+hi Todo                 ctermfg=Black           ctermbg=Gray            cterm=bold      "TODO、HACK、FIXME等标签
 
 "记住最后一次编辑的位置
 autocmd BufReadPost *
@@ -503,4 +525,7 @@ fun! ShowFuncName()
     echohl None
     call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
+map ff :call ShowFuncName() <CR>
+
+"------End .vimrc------
 
