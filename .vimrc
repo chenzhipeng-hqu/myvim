@@ -60,6 +60,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/neocomplcache.vim'
 
 Plugin 'Mark'
+
+Plugin 'bufexplorer.zip'
 call vundle#end()
 
 "filetype on
@@ -430,6 +432,10 @@ let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
 " // Set "<F12>" key for updating the tags file artificially
 let g:SrcExpl_updateTagsKey = "<F11>"
 
+"---------------------- BufExplorer Setting-------------------------------
+noremap <silent> bu :BufExplorer<CR>
+
+
 "------------------------------------------ Shotcut Setting ---------------------------------
 " 定义快捷键到行首和行尾
 nmap lb 0
@@ -464,7 +470,7 @@ nnoremap bn :bn<CR>
 nnoremap bp :bp<CR>
 "nnoremap bu :buffers<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap bu :ls<CR>:b<Space>
+"nnoremap bu :ls<CR>:b<Space>
 
 "在右下角显示 quickfix
 nnoremap col  :colder<CR>
@@ -490,7 +496,8 @@ inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><
 
 inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
 inoremap kk     //add czp@<C-R>=strftime("%Y/%m/%d")<CR>
-inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
+"inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
+inoremap merr   #error  ""<LEFT>
 inoremap dlog   chenzhipeng3472@<C-R>=strftime("%Y/%m/%d")<CR>
 inoremap imain    int main(int argc, char *argv[])<CR>{<CR><CR>return 0;<CR>}<CR><UP><UP><UP><Tab>
 
