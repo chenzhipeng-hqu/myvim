@@ -38,9 +38,8 @@ Plugin 'mhinz/vim-startify'
 "Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
 
-Plugin 'thaerkh/vim-workspace'
+Plugin 'Alternate-workspace'
 
-"Plugin 'majutsushi/tagbar'
 Plugin 'Tagbar'
 
 Plugin 'wesleyche/SrcExpl'
@@ -129,27 +128,6 @@ autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 "  设定配色方案
 colorscheme 256-jungle
-
-"重新设置语法高亮
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
-
-"
-hi LineNr               ctermfg=Blue    "   ctermbg=Black        "行号
-"
-"
-hi Pmenu         ctermfg=Black           "ctermbg=Grey                "弹出菜单
-hi PmenuSel      ctermfg=LightBlue       "ctermbg=DarkBlue            "菜单当前选项
-hi Comment              ctermfg=Grey            "   ctermbg=Black        "   注释
-hi Statement            ctermfg=Magenta    " ctermbg=Black           cterm=bold      "控制语句
-hi Special              ctermfg=58             "ctermbg=Black           cterm=bold      "字符串中的特殊字符
-hi String               ctermfg=Red         "    ctermbg=Black                           "字符串
-hi Identifier           ctermfg=DarkBlue         "   ctermbg=Black           cterm=bold     "函数名称
-hi Todo                 ctermfg=Black           ctermbg=Gray            cterm=bold      "TODO、HACK、FIXME等标签
 
 "记住最后一次编辑的位置
 autocmd BufReadPost *
@@ -307,7 +285,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "----------------- vim-workspace Setting ----------------
 "<leader>s新建session
-"nmap <c-s> :ToggleWorkspace<CR>
+nmap <c-s> :ToggleWorkspace<CR>
 "修改新建的会话名字
 let g:workspace_session_name = 'Session.vim'
 "开启撤销记录永久保存
@@ -404,7 +382,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "---------------------- SrcExpl Setting---------
-nmap <F8> :SrcExplToggle<CR>
+nmap <F9> :SrcExplToggle<CR>
 let g:SrcExpl_winHeight = 8
 "let g:SrcExpl_refreshTime = 100
 let g:SrcExpl_jumpKey = "<ENTER>"
