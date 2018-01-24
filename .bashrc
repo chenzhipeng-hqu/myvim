@@ -20,6 +20,10 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -106,6 +110,9 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # some more cd aliases
 alias ..='cd ..'
@@ -118,10 +125,18 @@ alias cd4='cd ../../..'
 alias cd5='cd ../../../..'
 alias cdmakebin='cd /home/user/code/autoMakeBin'
 alias cdnuwa='cd /home/user/code/nuwa'
-alias vims='vim -S Session.vim'
-alias cdtongfang='cd ~/code/MSD3553/tongfang'
+alias vims='sed -i '/set background=dark/d' Session.vim ; vim -S Session.vim '
+alias cdr01='cd ~/code/MSD3553/r01'
+alias cdinsignia='cd ~/code/MSD3553/insignia'
+alias repostatus='repo status'
+alias mypython='~/bin/python'
+alias cdui='cd code/tv-ap/dvb/ui_bby_insignia_fy19'
 alias MakeToUdisk='make ; sudo mount /dev/sdc1 /mnt/hgfs/ ; cp -p bin/*bin /mnt/hgfs/ ; ll /mnt/hgfs/ | grep *bin ; sudo umount /mnt/hgfs ; echo please plug your Udisk'
 alias MvToUdisk=' sudo mount /dev/sdc1 /mnt/hgfs/ ; cp -p bin/*bin /mnt/hgfs/ ; ll /mnt/hgfs/ | grep *bin ; sudo umount /mnt/hgfs ; echo please plug your Udisk'
+
+alias gcc="color_compile gcc"
+alias g++="color_compile g++"
+alias make="color_compile make"
 
 # some more git  aliases
 alias gitpushtrunk='git push origin trunk:trunk'
@@ -208,3 +223,15 @@ function cdgo()
 #export
 export GTEST_DIR="/home/user/code/gtest/googletest-master/googletest"
 export PYTHONSTARTUP=~/.pystartup
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=$HOME/lib:$LD_RUN_PATH
+export PKG_CONFIG_PATH=$HOME/lib/pkgconfg:$PKG_CONFIG_PATH
+#export LANG="it_IT.UTF-8"  
+#export LC_COLLATE="it_IT.UTF-8"  
+#export LC_CTYPE="it_IT.UTF-8"  
+#export LC_MESSAGES="it_IT.UTF-8"  
+#export LC_MONETARY="it_IT.UTF-8"  
+#export LC_NUMERIC="it_IT.UTF-8"  
+#export LC_TIME="it_IT.UTF-8"  
+#export LC_ALL="it_IT.UTF-8"
+
