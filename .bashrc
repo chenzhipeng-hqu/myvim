@@ -175,19 +175,19 @@ function col()
 {
     awk -v num=$1 '{print $num}'
 }
-function cdx()
-{
-    local g_cur_path=`pwd|tr '/' ' '`
-    local my_path=""
-    for i in $g_cur_path
-    do
-        my_path=$my_path/$i
-        if [[ ${i/${1}//} != $i ]];then
-                cd $my_path
-                break;
-        fi
-    done
-}
+#function cdx()
+#{
+    #local g_cur_path=`pwd|tr '/' ' '`
+    #local my_path=""
+    #for i in $g_cur_path
+    #do
+        #my_path=$my_path/$i
+        #if [[ ${i/${1}//} != $i ]];then
+                #cd $my_path
+                #break;
+        #fi
+    #done
+#}
 #luojie add --end
 
 ######################## dir func ################
@@ -196,6 +196,7 @@ function cdsave()
 {
     echo $PWD>>$DIR_LIST
     echo "Save current path: $PWD"
+    cdlist
 }
 function cdlist()
 {
@@ -216,6 +217,19 @@ function cdgo()
     else
         line=`sed -n "$1p" $DIR_LIST`
         cd $line
+    fi
+}
+
+function cdx()
+{
+    if [ $# != 1 ];then
+        echo "please select a number from dirlist"
+        cdlist
+    else
+        line=`sed -n "$1p" $DIR_LIST`
+        echo "cdx : $line"
+        sed -i "$1d" $DIR_LIST
+        cdlist
     fi
 }
 ######################## end #################
