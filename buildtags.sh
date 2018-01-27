@@ -1,7 +1,33 @@
 #!/bin/sh
-echo "Now is building ctags"
+#function fun_display_start_time()
+#{
+    #START_DATE=`date`
+    #echo -en "\033[0;32;1m"
+    #echo -e "********************************************"
+    #echo -n "* Start build at "
+    #echo $START_DATE
+    #echo -en "********************************************"
+    #echo -e "\033[0m"
+#}
+
+#function fun_display_finish_time()
+#{
+    #END_DATE=`date`
+    #echo -en "\033[0;32;1m"
+    #echo "********************************************"
+    #echo -n "* Start build at "
+    #echo $START_DATE
+    #echo -n "* Stop  build at "
+    #echo $END_DATE
+    #echo -en "********************************************"
+    #echo -e "\033[0m"
+#}
+
+#fun_display_start_time
+
+#echo "Now is building ctags"
 start=$(date +%s)
-ctags --tag-relative -Rf
+#ctags --tag-relative -Rf
 
 echo "Now is building cscope tags"
 
@@ -19,3 +45,6 @@ time=$(( $end - $start ))
 echo Total time:${time}sec
 
 echo "finish"
+
+
+#fun_display_finish_time
