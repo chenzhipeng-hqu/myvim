@@ -112,7 +112,7 @@ alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # some more cd aliases
 alias ..='cd ..'
@@ -125,7 +125,8 @@ alias cd4='cd ../../..'
 alias cd5='cd ../../../..'
 alias cdmakebin='cd /home/user/code/autoMakeBin'
 alias cdnuwa='cd /home/user/code/nuwa'
-alias vims='sed -i '/set background=dark/d' Session.vim ; vim -S Session.vim '
+#alias vims='sed -i '/^set background=/d' Session.vim ; vim -S Session.vim '
+alias vims='sed -i '/background=/d' Session.vim ; vim -S Session.vim '
 alias cdr01='cd ~/code/MSD3553/r01'
 alias cdinsignia='cd ~/code/MSD3553/insignia'
 alias repostatus='repo status'
