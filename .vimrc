@@ -439,9 +439,9 @@ inoremap <C-d> <del>
 "cnoremap <c-k> <up>
 
 "系统剪贴板
-vmap <c-c> "+y<esc>
-nmap <c-v> "+gp<esc>
-inoremap <c-v> <c-r>+
+"vmap <c-c> "+y<esc>
+"nmap <c-v> "+gp<esc>
+"inoremap <c-v> <c-r>+
 
 ""设置切换Buffer快捷键"
 nnoremap bn :bn<CR>
@@ -462,6 +462,10 @@ nmap <F3> :cprev<cr>
 nmap <F4> :cnext<cr>
 nmap cp :cp<cr>
 nmap cn :cn<cr>
+" Fast saving
+nmap <space>w <Esc>:mks!<cr>
+nmap <c-s> <Esc>:mks!<cr>
+"inoremap <leader>w <Esc>:mks!<cr>i
 
 nmap ,vimrc :hide edit ~/.vimrc<cr>
 nnoremap ; :
