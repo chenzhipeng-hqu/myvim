@@ -27,7 +27,7 @@ Plugin 'vim-airline/vim-airline'
 
 Plugin 'sheerun/vim-polyglot'
 
-"Plugin 'vim-scripts/Conque-GDB'
+Plugin 'vim-scripts/Conque-GDB'
 
 Plugin 'mbbill/undotree'
 
@@ -412,6 +412,21 @@ let g:SrcExpl_updateTagsKey = "<F11>"
 
 "---------------------- BufExplorer Setting-------------------------------
 noremap <silent> bu :BufExplorer<CR>
+
+"---------------------- Conque GDB Setting-------------------------------
+"待调试文件位于屏幕上方
+let g:ConqueGdb_SrcSplit = 'above'
+""保存历史
+let g:ConqueGdb_SaveHistory = 1
+"修改Conque GDB的Leader键
+let g:ConqueGdb_Leader = ','
+"总是显示颜色
+let g:ConqueTerm_Color = 2 
+"程序结束运行时，关闭Conque GDB窗口
+let g:ConqueTerm_CloseOnEnd = 1  
+"Conque Term配置错误时显示警告信息
+let g:ConqueTerm_StartMessages = 0 
+
 
 
 "------------------------------------------ Shotcut Setting ---------------------------------
