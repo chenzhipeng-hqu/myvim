@@ -30,7 +30,7 @@ hi Search	    ctermfg=125         ctermbg=None        cterm=Bold
 hi Type		    ctermfg=166         ctermbg=None        cterm=Bold
 "hi Type                 ctermfg=Blue            ctermbg=Black           cterm=bold      "数据类型
 hi Statement	ctermfg=172         ctermbg=None        cterm=Bold
-hi Comment	    ctermfg=50		ctermbg=None        cterm=None
+"hi Comment	    ctermfg=50		ctermbg=None        cterm=None
 hi LineNr	    ctermfg=244         ctermbg=233         cterm=None
 hi NonText	    ctermfg=105         ctermbg=None        cterm=Bold
 "hi NonText              ctermfg=LightBlue       ctermbg=Black
@@ -108,20 +108,20 @@ hi TabLineSel   ctermfg=104         ctermbg=236         cterm=Bold
 "hi TagListFileName      ctermfg=LightBlue       ctermbg=Black
 
 "重新设置语法高亮
-if version > 580
+"if version > 580
     hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
-
+"    if exists("syntax_on")
+"        syntax reset
+"    endif
+"endif
 "
+""
 hi LineNr               ctermfg=Blue    "   ctermbg=Black        "行号
 "
 "
 hi Pmenu         ctermfg=Black           "ctermbg=Grey                "弹出菜单
 hi PmenuSel      ctermfg=LightBlue       "ctermbg=DarkBlue            "菜单当前选项
-hi Comment              ctermfg=Grey            "   ctermbg=Black        "   注释
+hi Comment              ctermfg=DarkGrey            "   ctermbg=Black        "   注释
 hi Statement            ctermfg=Magenta    " ctermbg=Black           cterm=bold      "控制语句
 hi Special              ctermfg=58             "ctermbg=Black           cterm=bold      "字符串中的特殊字符
 hi String               ctermfg=Red         "    ctermbg=Black                           "字符串
