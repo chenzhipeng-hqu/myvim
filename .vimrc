@@ -42,7 +42,7 @@ Plugin 'Alternate-workspace'
 
 Plugin 'Tagbar'
 
-Plugin 'wesleyche/SrcExpl'
+"Plugin 'wesleyche/SrcExpl'
 
 Plugin 'rking/ag.vim'
 
@@ -382,33 +382,33 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "---------------------- SrcExpl Setting---------
-nmap <F9> :SrcExplToggle<CR>
-let g:SrcExpl_winHeight = 8
-"let g:SrcExpl_refreshTime = 100
-let g:SrcExpl_jumpKey = "<ENTER>"
-let g:SrcExpl_gobackKey = "<SPACE>"
-" // In order to Avoid conflicts, the Source Explorer should know what plugins
-" // are using buffers. And you need add their bufname into the list below
-" // according to the command ":buffers!"
-let g:SrcExpl_pluginList = [
-        \ "tags",
-        \ "cscope.out",
-        \ "Source_Explorer"
-        \ ]
-" // Enable/Disable the local definition searching, and note that this is not
-" // guaranteed to work, the Source Explorer doesn't check the syntax for now.
-" // It only searches for a match with the keyword according to command 'gd'
-let g:SrcExpl_searchLocalDef = 1
+"nmap <F9> :SrcExplToggle<CR>
+"let g:SrcExpl_winHeight = 8
+""let g:SrcExpl_refreshTime = 100
+"let g:SrcExpl_jumpKey = "<ENTER>"
+"let g:SrcExpl_gobackKey = "<SPACE>"
+"" // In order to Avoid conflicts, the Source Explorer should know what plugins
+"" // are using buffers. And you need add their bufname into the list below
+"" // according to the command ":buffers!"
+"let g:SrcExpl_pluginList = [
+        "\ "tags",
+        "\ "cscope.out",
+        "\ "Source_Explorer"
+        "\ ]
+"" // Enable/Disable the local definition searching, and note that this is not
+"" // guaranteed to work, the Source Explorer doesn't check the syntax for now.
+"" // It only searches for a match with the keyword according to command 'gd'
+"let g:SrcExpl_searchLocalDef = 1
 
-" // Do not let the Source Explorer update the tags file when opening
-let g:SrcExpl_isUpdateTags = 0
+"" // Do not let the Source Explorer update the tags file when opening
+"let g:SrcExpl_isUpdateTags = 0
 
-" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
-" //  create/update a tags file
-let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+"" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
+"" //  create/update a tags file
+"let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
 
-" // Set "<F12>" key for updating the tags file artificially
-let g:SrcExpl_updateTagsKey = "<F11>"
+"" // Set "<F12>" key for updating the tags file artificially
+"let g:SrcExpl_updateTagsKey = "<F11>"
 
 "---------------------- BufExplorer Setting-------------------------------
 noremap <silent> bu :BufExplorer<CR>
