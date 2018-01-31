@@ -14,13 +14,13 @@ Bundle 'VundleVim/Vundle.vim'
 Plugin 'kshenoy/vim-signature'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
+"Plugin 'tacahiroy/ctrlp-funky'
 
 Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
@@ -46,7 +46,7 @@ Plugin 'Tagbar'
 
 Plugin 'rking/ag.vim'
 
-Plugin 'ctags.vim'
+"Plugin 'ctags.vim'
 
 Plugin 'a.vim'
 
@@ -169,18 +169,18 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 
-nnoremap <Leader>o :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>o :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_by_filename = 1
+"nnoremap <Leader>o :CtrlPFunky<Cr>
+"" narrow the list down with a word under cursor
+"nnoremap <Leader>o :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+"let g:ctrlp_funky_syntax_highlight = 1
+"let g:ctrlp_extensions = ['funky']
+"let g:ctrlp_by_filename = 1
 
 " CtrlSF
-command! CO CtrlSFOpen
-let g:ctrlsf_winsize = '30%'
-let g:ctrlsf_auto_close = 0
-let g:ctrlsf_ignore_dir = ['vendor', 'bower_components','node_modules']
+"command! CO CtrlSFOpen
+"let g:ctrlsf_winsize = '30%'
+"let g:ctrlsf_auto_close = 0
+"let g:ctrlsf_ignore_dir = ['vendor', 'bower_components','node_modules']
 
 "use ag as the ctrlp command
 "let g:ctrlp_user_command = 'find %s -type f'
@@ -218,7 +218,6 @@ let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
 let g:NERDTree_title='NERD Tree'
-let g:neocomplcache_enable_at_startup = 1
 "let NERDTreeShowLineNumbers=1
 "let NERDTreeAutoCenter=1
 " 是否显示隐藏文件
