@@ -82,7 +82,8 @@ set nowb
 "set ai      "自动缩进
 set showmatch       "括号匹配高亮显示
 set nowrapscan  "禁止循环查找方式  wrapscan 启用循环查找方式
-set fileencodings=utf-8,gbk,ucs-bom,GB2312,big5,cp936
+"set fileencodings=utf-8,gbk,ucs-bom,GB2312,big5,cp936
+set fileencodings=utf-8,GB2312,gb18030,gbk,ucs-bom,big5,cp936,latin1  "顺序可以解决乱码问题
 " 将制表符扩展为空格
 set expandtab
 " 设置编辑时制表符占用空格数,  设定 tab 长度为 4
