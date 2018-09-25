@@ -1,6 +1,8 @@
 ".vimrc for chenzhipeng
 
 "---------------------------------------- MyVim Setting -------------------------------------"
+" 安装 vundle
+" git clone https://github.com/VundleVim/Vundle.vim.git
 set nocompatible         "disable vi
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
@@ -11,56 +13,67 @@ call vundle#begin()
 
 Bundle 'VundleVim/Vundle.vim'
 
-Plugin 'kshenoy/vim-signature'
+Plugin 'kshenoy/vim-signature'          " 标记某一行，快速到标记的某一行
 
-Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'            " 文件目录
 "Plugin 'jistr/vim-nerdtree-tabs'
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'         " 使用Gdiff 等命令
+Plugin 'tpope/vim-fugitive'             " git 修改行 显示 ~（修改），+（增加），-（删除）
 
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'             " 查找文件
 "Plugin 'tacahiroy/ctrlp-funky'
 
-Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline'        " 底行显示文件信息 美观
 "Plugin 'vim-airline/vim-airline-themes'
 
-Plugin 'sheerun/vim-polyglot'
+"Plugin 'sheerun/vim-polyglot'
 
-Plugin 'vim-scripts/Conque-GDB'
+Plugin 'vim-scripts/Conque-GDB'         " gdb 调试用
 
-Plugin 'mbbill/undotree'
+Plugin 'mbbill/undotree'                " 永久记录撤销内容
 
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 
-Plugin 'mhinz/vim-startify'
+"Plugin 'mhinz/vim-startify'
 
 "Plugin 'luochen1990/rainbow'
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'kien/rainbow_parentheses.vim'   " 彩虹括号
 
-Plugin 'Alternate-workspace'
+"Plugin 'Alternate-workspace'
 
-Plugin 'Tagbar'
+Plugin 'Tagbar'                         " 类似sourceinsight 的文件结构显示，比taglist更美观
 
 "Plugin 'wesleyche/SrcExpl'
 
-Plugin 'rking/ag.vim'
+Plugin 'rking/ag.vim'                   " ag 查找，比ctags和cscope 更快
 
 "Plugin 'ctags.vim'
 
-Plugin 'a.vim'
+"Plugin 'a.vim'
 
-Plugin 'chxuan/change-colorscheme'
+"Plugin 'chxuan/change-colorscheme'
 
-Plugin 'simplyzhao/cscope_maps.vim'
+Plugin 'simplyzhao/cscope_maps.vim'     " 查找函数定义及引用，变量定义及引用位置，类似sourceinsight 的 ctrl + /
 
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'       " 多行注释更快捷
 
-Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neocomplcache.vim'       " 补全
 
-Plugin 'Mark'
+Plugin 'Mark'                           " 空格 + m 高亮显示当前字符串
 
-Plugin 'bufexplorer.zip'
+Plugin 'bufexplorer.zip'                " 打开的文件 浏览
+
+Plugin 'CCTree'                         " 调用树显示
+
+"Plugin 'godlygeek/tabular'  "代码对齐
+
+Bundle 'juneedahamed/svnj.vim'
+
+Plugin 'Markdown-syntax'                " mark down 语法高亮
+
+Plugin 'plasticboy/vim-markdown'        " mark 功能
+
 call vundle#end()
 
 "filetype on
@@ -70,7 +83,7 @@ filetype plugin on
 syntax enable
 syntax on  " 语法高亮
 set completeopt=longest,menu
-"set smartindent     "打开 'smartindent' 或 'cindent' 时，行的缩进根据 C 程序的要求自动调整
+set smartindent     "打开 'smartindent' 或 'cindent' 时，行的缩进根据 C 程序的要求自动调整
 set ignorecase    "忽略大小写  noignorecase  精确匹配大小写
 set incsearch   "打开显示查找匹配过程  noincsearch 打开显示查找匹配过程
 set hlsearch     "高亮搜索结果  nohlsearch 关闭高亮显示查找的文本
@@ -141,11 +154,11 @@ au GUIEnter * simalt ~
 
 "indent-guides
 "随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=1
+"let g:indent_guides_enable_on_vim_startup=1
 " 从第二层开始可视化显示缩进
-let g:indent_guides_start_level=2
+"let g:indent_guides_start_level=2
 " 色块宽度
-let g:indent_guides_guide_size=5
+"let g:indent_guides_guide_size=5
 "------------------------------------------------ Setting ----------------------------------*/
 
 "------------------ Ag Setting-------------------------*/
@@ -153,6 +166,7 @@ let g:indent_guides_guide_size=5
 "vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " When you press <leader>r you can search and replace the selected text
 "vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+nmap <leader>a  :Ag 
 
 "------------------ Ctrlp Setting-------------------------
 "let g:ctrlp_map = '<leader>p'
@@ -160,14 +174,15 @@ let g:indent_guides_guide_size=5
 "map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|neocomplcache)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|.o)$',
     \ }
-let g:ctrlp_working_path_mode=0
+let g:ctrlp_by_filename = 1
+let g:ctrlp_working_path_mode="rw"
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
+let g:ctrlp_mruf_max=50
 let g:ctrlp_follow_symlinks=1
 
 "nnoremap <Leader>o :CtrlPFunky<Cr>
@@ -185,16 +200,25 @@ let g:ctrlp_follow_symlinks=1
 
 "use ag as the ctrlp command
 "let g:ctrlp_user_command = 'find %s -type f'
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
-"            \ --ignore .git
-"            \ --ignore out
-"            \ --ignore .svn
-"            \ --ignore .hg
-"            \ --ignore .DS_Store
-"            \ -g ""'
+"调用ag进行搜索提升速度，同时不使用缓存文件
+"if executable('ag')
+    "set grepprg=ag\ --nogroup\ --nocolor
+    "let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
+            "\ --ignore .git
+            "\ --ignore out
+            "\ --ignore .svn
+            "\ --ignore .hg
+            "\ --ignore .DS_Store
+            "\ -g ""'
+    "let g:ctrlp_use_caching = 0
+"endif
 
 " default colors/groups
 " you may define your own colors in you vimrc file, in the form as below:
+
+"----------------- vim-signature Setting ------------------
+nmap <F10> :marks<cr>
+"nmap <space>m m/
 
 "----------------- mark Setting ------------------
 hi MarkWord7  ctermbg=DarkCyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
@@ -203,6 +227,11 @@ hi MarkWord9  ctermbg=DarkYellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
 hi MarkWord10  ctermbg=DarkRed      ctermfg=Black  guibg=#FF7272    guifg=Black
 hi MarkWord11  ctermbg=DarkMagenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
 hi MarkWord12  ctermbg=DarkBlue     ctermfg=Black  guibg=#9999FF    guifg=Black
+
+"------------------- svn Setting -----------------
+let g:svnj_custom_statusbar_ops_hide = 1
+let g:svnj_browse_cache_all = 1
+"let g:svnj_allow_leader_mappings=1
 
 "-------------- neocomplcache Setting ------------
 let g:neocomplcache_enable_at_startup = 1
@@ -238,6 +267,8 @@ nnoremap uo :UndotreeToggle<cr>
 
 "------------------ GitGutter Setting-------------------------
 let     g:gitgutter_diff_args = '-w'
+"let     g:gitgutter_realtime = 0
+let     g:gitgutter_grep_command = 'grep'
 nmap    gk :GitGutterPrevHunk<CR>
 nmap    gj :GitGutterNextHunk<CR>
 nmap    gd :GitGutterPreviewHunk<CR>
@@ -247,17 +278,17 @@ nmap    gc :pclose<CR>
 
 "------------------ startify Setting-------------------------
 "设置书签
-let g:startify_bookmarks            = [
-            \ '~/Project/test.cpp',
-            \]
+"let g:startify_bookmarks            = [
+            "\ '~/Project/test.cpp',
+            "\]
 "起始页显示的列表长度
-let g:startify_files_number = 20
+"let g:startify_files_number = 20
 "自动加载session
-let g:startify_session_autoload = 1
+"let g:startify_session_autoload = 1
 "过滤列表，支持正则表达式
-let g:startify_skiplist = [
-       \ '^/tmp',
-       \ ]
+"let g:startify_skiplist = [
+       "\ '^/tmp',
+       "\ ]
 "自定义Header和Footer
 "let g:startify_custom_header = [
 "            \ '+------------------------------+',
@@ -277,15 +308,15 @@ let g:startify_skiplist = [
 ""设置默认启动
 "Thisabled by default; add the following to your vimrc to enable the
 ""extension:
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 "显示 buffer 的数字标签
 "let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "----------------- vim-workspace Setting ----------------
 "<leader>s新建session
-nmap <c-s> :ToggleWorkspace<CR>
+"nmap <c-s> :ToggleWorkspace<CR>
 "修改新建的会话名字
 let g:workspace_session_name = 'Session.vim'
 "开启撤销记录永久保存
@@ -354,6 +385,19 @@ if has("cscope")
     nmap ,mk :Rgrep <C-R>=expand("<cword>")<CR> *.mk<CR><CR>
     nmap ,f  :find <cword>
 endif
+
+"function! LoadCscopeTag()
+	 "let f = getcwd()
+     "let tagsfile =   "/home/chenzhipeng3472/tags/CscopeTags/".substitute(f,'/','_','g').".tags"
+     "let scopefile =  "/home/chenzhipeng3472/tags/CscopeTags/".substitute(f,'/','_','g').".cscope_file"
+     "if filereadable(tagsfile)
+          "execute  "set tags =".tagsfile
+     "endif
+     "if filereadable(scopefile)
+          "execute  "cs add  ".scopefile
+     "endif
+"endfunction
+"au  VimEnter * call LoadCscopeTag()    " 启动vim时，自动执行这个函数。
 
 "---------------------- rainbow_parentheses Setting---------
 let g:rbpt_colorpairs = [
@@ -458,6 +502,11 @@ inoremap <C-d> <del>
 "nmap <c-v> "+gp<esc>
 "inoremap <c-v> <c-r>+
 
+vmap 0p "0p
+vmap ay "ay
+map ap "ap
+
+
 ""设置切换Buffer快捷键"
 nnoremap bn :bn<CR>
 nnoremap bp :bp<CR>
@@ -483,7 +532,7 @@ nmap <c-s> <Esc>:mks!<cr>
 "inoremap <leader>w <Esc>:mks!<cr>i
 
 nmap ,vimrc :hide edit ~/.vimrc<cr>
-nnoremap ; :
+"nnoremap ; :
 
 "git log
 inoremap gitf  [feature][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
@@ -491,7 +540,8 @@ inoremap gitc  [config][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END>
 inoremap gitb  [bugfix][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left><Left><Left>
 inoremap gitm  [merge][][]<CR><CR>[what]<CR>[why]null<CR>[how]null<CR><UP><END><UP><UP><UP><UP><Left>
 
-inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
+"inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);
+inoremap gdb    printf("\033[31;43m## [CZP] %s %s at %d\033[0m\n", __FILE__, __FUNCTION__, __LINE__);<CR>printf(" \n",);<Left><Left><Left><Left><Left><Left><Left><Esc>
 inoremap kk     //add czp@<C-R>=strftime("%Y/%m/%d")<CR>
 "inoremap merr   #error  <C-R>=strftime("%H-%M-%s")<CR>
 inoremap merr   #error  ""<LEFT>
