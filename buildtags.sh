@@ -1,4 +1,5 @@
-#!/bin/sh
+#! /bin/bash
+
 #function fun_display_start_time()
 #{
     #START_DATE=`date`
@@ -25,13 +26,13 @@
 
 #fun_display_start_time
 
-#echo "Now is building ctags"
+echo "Now is building ctags"
 start=$(date +%s)
-#ctags --tag-relative -Rf
+ctags --tag-relative --sort=foldcase -Rf
 
 echo "Now is building cscope tags"
 
-find `pwd -P` -type f -iname "*.c" -o -type f -iname "*.h" -o -type f -iname "*.cpp" -o -type f -iname "*.java" -o -type f -iname "*.sh"  -o -type f -iname "*.inl" > cscope.files
+find `pwd -P` -type f -iname "*.py" -o -type f -iname "*.c" -o -type f -iname "*.h" -o -type f -iname "*.cpp" -o -type f -iname "*.hpp" -o -type f -iname "*.java" -o -type f -iname "*.sh"  -o -type f -iname "*.inl" > cscope.files
 
 #如果路径中含有空格，需要使用sed对生成的cscope.files文件进行处理，命令：
 sed -i 's/^/"/;s/$/"/' cscope.files
@@ -42,7 +43,7 @@ rm -rf cscope.files
 
 end=$(date +%s)
 time=$(( $end - $start ))
-echo Total time:${time}sec
+echo Total time: ${time} sec
 
 echo "finish"
 
