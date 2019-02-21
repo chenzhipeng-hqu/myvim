@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/chenzhipeng'
-let g:netrw_dirhist_2='/home/lcd_proj/petalinux/code/applications/task'
-let g:netrw_dirhist_3='/home/lcd_proj/petalinux/code/linux-trolong/linux-xlnx/arch/arm/boot/dts'
