@@ -80,6 +80,12 @@ Plugin 'Syntastic'
 
 "Plugin 'Valloric/YouCompleteMe'
 
+Plugin 'vim-scripts/indentpython.vim'
+
+" python自动补全
+Bundle 'davidhalter/jedi-vim'
+Bundle "klen/python-mode"
+
 call vundle#end()
 
 "filetype on
