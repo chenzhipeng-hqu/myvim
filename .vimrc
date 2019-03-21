@@ -48,7 +48,7 @@ Plugin 'Tagbar'                         " 类似sourceinsight 的文件结构显
 
 Plugin 'rking/ag.vim'                   " ag 查找，比ctags和cscope 更快
 
-"Plugin 'ctags.vim'
+Plugin 'ctags.vim'
 
 "Plugin 'a.vim'
 
@@ -58,7 +58,7 @@ Plugin 'simplyzhao/cscope_maps.vim'     " 查找函数定义及引用，变量�
 
 Plugin 'scrooloose/nerdcommenter'       " 多行注释更快捷
 
-Plugin 'Shougo/neocomplcache.vim'       " 补全
+"Plugin 'Shougo/neocomplcache.vim'       " 补全
 
 Plugin 'Mark'                           " 空格 + m 高亮显示当前字符串
 
@@ -76,9 +76,9 @@ Plugin 'plasticboy/vim-markdown'        " mark 功能
 
 Plugin 'suan/vim-instant-markdown'
 
-Plugin 'Syntastic'
+"Plugin 'Syntastic'
 
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'vim-scripts/indentpython.vim'
 
@@ -89,7 +89,6 @@ Bundle "klen/python-mode"
 call vundle#end()
 
 "filetype on
-filetype plugin on
 "filetype plugin indent on
 
 syntax enable
@@ -148,6 +147,8 @@ set updatetime=100
 
 " 总是显示状态栏
 set laststatus=2  "0 永远不;1 只有用分割窗口的时候（默认）;2 永远有
+
+set guifont=Courier_New:h10:cANSI   " 设置字体
 
 " 高亮显示当前行/列
 set cursorline
@@ -249,7 +250,7 @@ let g:svnj_browse_cache_all = 1
 "let g:svnj_allow_leader_mappings=1
 
 "-------------- neocomplcache Setting ------------
-let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_at_startup = 1
 
 "----------------- Nerdtree Setting ------------------
 " 设置NERDTree子窗口宽度
@@ -352,7 +353,7 @@ if !empty("$HOME/.vim/bundle/tagbar")
     "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
     let g:tagbar_autopreview = 1
     ""设置tagbar使用的ctags的插件,必须要设置对    
-    "let g:tagbar_ctags_bin='ctags'    
+    "let g:tagbar_ctags_bin='/usr/bin/ctags'
     "设置tagbar的窗口宽度    
     "let g:tagbar_width=30    
     ""设置tagbar的窗口显示的位置,为左边    
@@ -490,81 +491,69 @@ let g:ConqueTerm_StartMessages = 0
 let g:instant_markdown_autostart = 1
 
 
+"---------------------- python Setting-------------------------------
+"let g:completor_python_binary = '/usr/lib/python3/dist-packages/jedi'
+
+
 "---------------------- syntastic Setting-------------------------------
-"设置error和warning的标志
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='►'
-"总是打开Location List（相当于QuickFix）窗口，如果你发现syntastic因为与其他插件冲突而经常崩溃，将下面选项置0
-let g:syntastic_always_populate_loc_list = 1
-"自动打开Locaton List，默认值为2，表示发现错误时不自动打开，当修正以后没有再发现错误时自动关闭，置1表示自动打开自动关闭，0表示关闭自动打开和自动关闭，3表示自动打开，但不自动关闭
-let g:syntastic_auto_loc_list = 1
-"修改Locaton List窗口高度
-let g:syntastic_loc_list_height = 5
-"打开文件时自动进行检查
-let g:syntastic_check_on_open = 1
-"自动跳转到发现的第一个错误或警告处
-let g:syntastic_auto_jump = 1
-"进行实时检查，如果觉得卡顿，将下面的选项置为1
-let g:syntastic_check_on_wq = 0
-"高亮错误
-let g:syntastic_enable_highlighting=1
-"让syntastic支持C++11
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-"设置pyflakes为默认的python语法检查工具
-let g:syntastic_python_checkers = ['pyflakes']
-"修复syntastic使用:lnext和:lprev出现的跳转问题，同时修改键盘映射使用sn和sp进行跳转
-function! <SID>LocationPrevious()
-  try
-    lprev
-  catch /^Vim\%((\a\+)\)\=:E553/
-    llast
-  endtry
-endfunction
-function! <SID>LocationNext()
-  try
-    lnext
-  catch /^Vim\%((\a\+)\)\=:E553/
-    lfirst
-  endtry
-endfunction
-nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
-nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
-nmap <silent> sp    <Plug>LocationPrevious
-nmap <silent> sn    <Plug>LocationNext
-"关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
-nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
+""设置error和warning的标志
+"let g:syntastic_enable_signs = 1
+"let g:syntastic_error_symbol='✗'
+"let g:syntastic_warning_symbol='►'
+""总是打开Location List（相当于QuickFix）窗口，如果你发现syntastic因为与其他插件冲突而经常崩溃，将下面选项置0
+"let g:syntastic_always_populate_loc_list = 1
+""自动打开Locaton List，默认值为2，表示发现错误时不自动打开，当修正以后没有再发现错误时自动关闭，置1表示自动打开自动关闭，0表示关闭自动打开和自动关闭，3表示自动打开，但不自动关闭
+"let g:syntastic_auto_loc_list = 1
+""修改Locaton List窗口高度
+"let g:syntastic_loc_list_height = 5
+""打开文件时自动进行检查
+"let g:syntastic_check_on_open = 1
+""自动跳转到发现的第一个错误或警告处
+"let g:syntastic_auto_jump = 1
+""进行实时检查，如果觉得卡顿，将下面的选项置为1
+"let g:syntastic_check_on_wq = 0
+""高亮错误
+"let g:syntastic_enable_highlighting=0
+""让syntastic支持C++11
+"let g:syntastic_cpp_remove_include_errors = 1
+"let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+""设置pyflakes为默认的python语法检查工具
+"let g:syntastic_python_checkers = ['pyflakes']
+""修复syntastic使用:lnext和:lprev出现的跳转问题，同时修改键盘映射使用sn和sp进行跳转
+"function! <SID>LocationPrevious()
+  "try
+    "lprev
+  "catch /^Vim\%((\a\+)\)\=:E553/
+    "llast
+  "endtry
+"endfunction
+"function! <SID>LocationNext()
+  "try
+    "lnext
+  "catch /^Vim\%((\a\+)\)\=:E553/
+    "lfirst
+  "endtry
+"endfunction
+"nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
+"nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
+"nmap <silent> sp    <Plug>LocationPrevious
+"nmap <silent> sn    <Plug>LocationNext
+""关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
+"nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
+"function! ToggleErrors()
+    "let old_last_winnr = winnr('$')
+    "lclose
+    "if old_last_winnr == winnr('$')
+        "" Nothing was closed, open syntastic error location panel
+        "Errors
+    "endif
+"endfunction
 
 "---------------------- ycm Setting-------------------------------
-""默认配置文件路径"
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-""打开vim时不再询问是否加载ycm_extra_conf.py配置"
-"let g:ycm_confirm_extra_conf=0
 "set completeopt=longest,menu
-""python解释器路径"
-"let g:ycm_path_to_python_interpreter='/usr/bin/python3'
-""是否开启语义补全"
-"let g:ycm_seed_identifiers_with_syntax=1
-""是否在注释中也开启补全"
-"let g:ycm_complete_in_comments=1
-"let g:ycm_collect_identifiers_from_comments_and_strings = 0
-""开始补全的字符数"
-"let g:ycm_min_num_of_chars_for_completion=2
 ""补全后自动关机预览窗口"
 "let g:ycm_autoclose_preview_window_after_completion=1
-"" 禁止缓存匹配项,每次都重新生成匹配项"
-"let g:ycm_cache_omnifunc=0
-""字符串中也开启补全"
-"let g:ycm_complete_in_strings = 1
 ""离开插入模式后自动关闭预览窗口"
 "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 ""回车即选中当前项"
@@ -574,6 +563,69 @@ endfunction
 "inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
 "inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
 "inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
+
+" 寻找全局配置文件
+"let g:ycm_global_ycm_extra_conf = './'
+"let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" 禁用syntastic来对python检查
+let g:syntastic_ignore_files=[".*\.py$"] 
+""python解释器路径"
+"let g:ycm_path_to_python_interpreter='/usr/bin/python3'
+" 使用ctags生成的tags文件
+let g:ycm_collect_identifiers_from_tag_files = 1
+" 开启语义补全
+" 修改对C语言的补全快捷键，默认是CTRL+space，修改为ALT+;未测出效果
+let g:ycm_key_invoke_completion = '<M-;>'
+" 设置转到定义处的快捷键为ALT+G，未测出效果
+nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR> 
+"关键字补全 自动开启语义补全
+let g:ycm_seed_identifiers_with_syntax = 1
+" 在接受补全后不分裂出一个窗口显示接受的项
+set completeopt-=preview
+" 让补全行为与一般的IDE一致
+set completeopt=longest,menu
+" 不显示开启vim时检查ycm_extra_conf文件的信息"打开vim时不再询问是否加载ycm_extra_conf.py配置
+let g:ycm_confirm_extra_conf=0
+" 每次重新生成匹配项，禁止缓存匹配项
+let g:ycm_cache_omnifunc=0
+"字符串中也开启补全"
+let g:ycm_complete_in_strings = 1
+" 在注释中也可以补全
+let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+""开始补全的字符数"
+let g:ycm_min_num_of_chars_for_completion=1
+" 错误标识符
+let g:ycm_error_symbol='乄'
+" 警告标识符
+let g:ycm_warning_symbol='〇'
+" 不查询ultisnips提供的代码模板补全，如果需要，设置成1即可
+let g:ycm_use_ultisnips_completer=0
+"与syntastic有冲突，建议关闭
+let g:ycm_show_diagnostics_ui = 1
+"在代码中高亮显示YCM诊断对应的内容，如果关闭，则会关闭错误和警告高亮功能，0表示关闭
+"let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_echo_current_diagnostic = 1
+
+" 每次获取新诊断数据时自动填充位置列表，1表示打开，默认关闭以免干扰可能已放置在位置列表中的其他数据。在vim中用:help location-list命令查看位置列表的具体解释"
+let g:ycm_always_populate_location_list = 1
+"在强制编译后自动打位置列表并用诊断信息填充，所谓位置列表就是标出各错误或警告对应在哪些行的小窗口，可以实现直接跳转到错误行
+let g:ycm_open_loclist_on_ycm_diags = 1
+
+function! s:CustomizeYcmLocationWindow()
+  " Move the window to the top of the screen.
+  wincmd K
+  " Set the window height to 5.
+  5wincmd _
+  " Switch back to working window.
+  wincmd p
+endfunction
+
+autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
 
 
 "------------------------------------------ Shotcut Setting ---------------------------------

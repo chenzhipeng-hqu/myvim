@@ -28,7 +28,7 @@
 
 echo "Now is building ctags"
 start=$(date +%s)
-ctags --tag-relative --sort=foldcase -Rf
+ctags --tag-relative --sort=foldcase --fields=+l -Rf
 
 echo "Now is building cscope tags"
 
@@ -46,6 +46,12 @@ time=$(( $end - $start ))
 echo Total time: ${time} sec
 
 echo "finish"
+
+if [ -f .ycm_extra_conf.py ]; then
+    echo ".ycm_extra_conf.py exist."
+else
+    cp ~/.ycm_extra_conf.py .
+fi
 
 
 #fun_display_finish_time
