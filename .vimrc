@@ -739,5 +739,18 @@ fun! ShowFuncName()
 endfun
 map ff :call ShowFuncName() <CR>
 
+" rt-thread c code style
+map <F2> :call FormatCode()<CR>
+func! FormatCode()
+    exec "w"
+    if &filetype == 'C' || &filetype == 'h'
+        exec "!astyle --style=allman --indent=spaces=4 --indent-preproc-block --pad-oper --pad-header --unpad-paren --suffix=none --align-pointer=name --lineend=linux --convert-tabs --verbose %"
+    elseif &filetype == 'cpp'
+        exec "!astyle --style=google %"        
+    return
+    endif
+endfunc
+
+
 "------End .vimrc------
 
